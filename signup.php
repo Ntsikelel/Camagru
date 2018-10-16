@@ -23,18 +23,20 @@
 </body>
 </html>
 <?php
-
+    include_once ("config/database.php");
+    echo $DB_DSN.$DB_PASSWORD.$DB_USER;
 if (isset($_POST['submit']))
 {
+
+
     $username = $_POST['username'];
-    $passwd = $_POST['passwd'];
+    $val = 'whirlpool';
+    $passwd = hash($val, $_POST['passwd'],false);
     $email = $_POST['email'];
-    print_r($_POST);
-    echo "here";
+    $tablename = "userrs;";
     if (!isset($passwd) || !isset($email) || !isset($username))
     {
         header('Location: http://localhost:8080/Camagru/signup.php?error=emptyfiled');
-       // exit();
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL))
     {
@@ -45,12 +47,22 @@ if (isset($_POST['submit']))
     {
         header('Location: http://localhost:8080/Camagru/signup.php?error=username');
     }
-        $pdo = new PDO('mysql:host=localhost;dbname=userrs;' , 'root','123456');
-        $pdo.exec('INSERT INTO `userrs`(`id`, `username`, `password`, `email`) VALUES (2,$username,$passwd,$email)');
+
+    try{
+
+        $pdo = new PDO($DB_DSN.';dbname='.$tablename, $DB_USER, $DB_PASSWORD);
+       // $pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "INSERT INTO userrs(id, username, password, email) VALUES (?,?,?,?)";
+        $pdo->prepare($query)->execute([null,$username,$passwd,$email]);
         $to = $email;
         $subject = "Account activation"  ;
-         // mail($to,$subject,$msg,);
+         mail($to,$subject,$msg);
         header('Location: http://localhost:8080/Camagru/login.php?'); 
-        echo "here";
+    }
+    catch (PDOExeption $e)
+    {
+        echo $e.getMessege();
+        header('Location: http://localhost:8080/Camagru/signup.php?'); 
+    }
 }
 ?>
