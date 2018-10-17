@@ -11,7 +11,11 @@
 <body>
     <div id = "signup">
         <form action= "signup.php" method = "post">
-            <input  type= "text" name="username" placeholder="Name" required/>
+            <p id = "errmsg"><?php  foreach($_GET as $key => $val)
+            {
+                echo "Error :".$val; 
+            }?></p>
+            <input  type= "text" name="username" placeholder="Name" />
             <br/>
             <input  type= "email" name="email" placeholder="example@domain.com" required/>
             <br/>
@@ -27,8 +31,10 @@
     echo $DB_DSN.$DB_PASSWORD.$DB_USER;
 if (isset($_POST['submit']))
 {
-
-
+    print_r($_POST);
+    if (isset($_POST['passwd']) || isset($_POST['email']) || isset($_POST['username']))
+    {
+        echo "here1";
     $username = $_POST['username'];
     $val = 'whirlpool';
     $passwd = hash($val, $_POST['passwd'],false);
@@ -41,28 +47,35 @@ if (isset($_POST['submit']))
     if (!filter_var($email, FILTER_VALIDATE_EMAIL))
     {
         header('Location: http://localhost:8080/Camagru/signup.php?error=email');
-       
     }
     if (!preg_match("/^[a-zA-Z]*$/",$username))
     {
         header('Location: http://localhost:8080/Camagru/signup.php?error=username');
     }
-
     try{
 
         $pdo = new PDO($DB_DSN.';dbname='.$tablename, $DB_USER, $DB_PASSWORD);
        // $pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "INSERT INTO userrs(id, username, password, email) VALUES (?,?,?,?)";
+        $check = "SELECT * FROM userrs WHERE email=".$email;
+        if (empty($pdo->query($check)))
+        {
+            header('Location: http://localhost:8080/Camagru/signup.php?error=UserExists');
+            exit();
+        }
         $pdo->prepare($query)->execute([null,$username,$passwd,$email]);
         $to = $email;
-        $subject = "Account activation"  ;
-         mail($to,$subject,$msg);
-        header('Location: http://localhost:8080/Camagru/login.php?'); 
+        $subject = "Account activation";
+        mail($to,$subject,$msg);
+        header('Location: http://localhost:8080/Camagru/login.php'); 
     }
     catch (PDOExeption $e)
     {
         echo $e.getMessege();
-        header('Location: http://localhost:8080/Camagru/signup.php?'); 
+        header('Location: http://localhost:8080/Camagru/signup.php?error=ERROR'); 
     }
+}
+else
+    header('Location: http://localhost:8080/Camagru/signup.php?error=emptyfiled');
 }
 ?>
