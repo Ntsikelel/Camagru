@@ -1,5 +1,5 @@
 <?php
-  include_once ("getfunc.php");
+  require_once ("getfunc.php");
 function ver_pass($pass)
 {
     if (strlen($pass) < 8 )

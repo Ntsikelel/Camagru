@@ -29,7 +29,7 @@
 </body>
 </html>
 <?php
-include_once ("setfunc.php");
+require_once  ("setfunc.php");
     if (isset($_POST['displayname'])   && isset($_POST['email']) )
     {
         set_displayname($_POST['displayname'],$_POST['email']);

@@ -22,7 +22,9 @@
             <br/>
             <input  type= "password" name="passwd" placeholder="******" require/>
             <br/>
-            <input  type= "submit" name="submit" value = "Login"/>
+            <input  type= "submit" name="submit" value = "Login"/><br/>
+            <a href="http://localhost:8080/Camagru/signup.php">Need to sign up</a><br/>
+            <a href="http://localhost:8080/Camagru/signup.php">Forgot your password</a>
         </form>
     </div>
 </body>
@@ -30,7 +32,7 @@
 <?php
 if (isset($_POST['submit']))
 {
-    include_once ("config/database.php");
+    require_once  ("config/database.php");
     echo $DB_DSN.$DB_PASSWORD.$DB_USER;
 if (isset($_POST['submit']))
 {
@@ -48,7 +50,10 @@ if (isset($_POST['submit']))
         while ($name = $stat->fetch())
         {
             if($name['username'] === $username && $name['passwd'] === $passwd)
+            {
+                 $_SESSION['email'] = $name['email'];
                  header('Location: http://localhost:8080/Camagru/index.php');
+            }
         }
         header('Location: http://localhost:8080/Camagru/login.php?error=UserNotFound'); 
     }

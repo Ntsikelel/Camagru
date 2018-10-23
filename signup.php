@@ -24,15 +24,17 @@
             <br/>
             <input  type= "password" name="passwd" placeholder="******" required/>
             <br/>
-            <input  type= "submit" name="submit" value = "Sign Up"/>
+            <input  type= "submit" name="submit" value = "Sign Up"/><br/>
+            <a href="http://localhost:8080/Camagru/login.php">Do you already have an account</a><br/>
         </form>
     </div>
 </body>
 </html>
 <?php
-    include_once ("config/database.php");
-    include_once ("mail.php");
-    include_once ("setfunc.php");
+   require_once ("config/database.php");
+    require_once ("mail.php");
+    require_once ("setfunc.php");
+
     echo $DB_DSN.$DB_PASSWORD.$DB_USER;
 if (isset($_POST['submit']))
 {
@@ -67,8 +69,8 @@ if (isset($_POST['submit']))
         while ($name = $stat->fetch())
         {
             if($name['email'] === $email)
-           { echo "here2";
-            set_displayname("Got it",$email);
+           { 
+                 set_displayname("Got it",$email);
                 header('Location: http://localhost:8080/Camagru/signup.php?error=UserExists');
                 exit();
             }

@@ -19,7 +19,7 @@
             </p>
             <input  type= "text" name="username" placeholder="Name" />
             <br/>
-            <input  type= "email" name="email" placeholder="example@domain.com" required/>
+            <input  type= "password" name="email" placeholder="example@domain.com" required/>
             <br/>
             <input  type= "password" name="passwd" placeholder="******" required/>
             <br/>
