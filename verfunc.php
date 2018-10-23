@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
   include_once ("getfunc.php");
 function ver_pass($pass)
 {
@@ -19,16 +18,4 @@ function ver_username($username)
     }
 }
 
-=======
-
-function passwdver($pass)
-{
-    if(strlen($pass) < 8)
-    {
-        return (false);
-    }
-}
-
-
->>>>>>> 30cfd86cdbdb840f4a1bca2fbc2e6d2d51a33ee7
 ?>
