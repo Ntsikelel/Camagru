@@ -39,7 +39,6 @@ if (isset($_POST['submit']))
     $username = $_POST['username'];
     $val = 'whirlpool';
     $passwd = hash($val, $_POST['passwd'],false);
-<<<<<<< HEAD
     $tablename = "camagru;";
     try
     {
@@ -52,21 +51,6 @@ if (isset($_POST['submit']))
                  header('Location: http://localhost:8080/Camagru/index.php');
         }
         header('Location: http://localhost:8080/Camagru/login.php?error=UserNotFound'); 
-=======
-    $tablename = "userrs;";
-    try
-    {
-        $pdo = new PDO($DB_DSN.';dbname='.$tablename, $DB_USER, $DB_PASSWORD);
-        $pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stat = $pdo->query("SELECT * FROM userrs");
-        while ($name = $stat->fetch())
-        {
-            if($name['username'] === $username && $name['password'] === $passwd)
-            {
-                 header('Location: http://localhost:8080/Camagru/index.php');
-            }
-        }
->>>>>>> 30cfd86cdbdb840f4a1bca2fbc2e6d2d51a33ee7
     }
     catch (PDOException $e)
     {

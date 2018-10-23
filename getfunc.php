@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
     include_once ("config/database.php");
 
 function is_exist($email,$user)
@@ -45,7 +44,7 @@ function get_pass($pass, $email)
         echo $e.getMessege();
     }
 }
-function set_username($username, $email)
+function get_username($username, $email)
 {
     try
     {
@@ -67,7 +66,7 @@ function set_username($username, $email)
     }
 
 }
-function set_email($emailb,$emaila)
+function get_email($emailb,$emaila)
 {
     try
     {
@@ -88,7 +87,7 @@ function set_email($emailb,$emaila)
         echo $e.getMessege();
     }
 }
-function set_is_act($num, $email)
+function get_is_act($num, $email)
 { 
     try
     {
@@ -109,7 +108,7 @@ function set_is_act($num, $email)
         echo $e.getMessege();
     }
 }
-function set_is_pen($num, $email)
+function get_is_pen($num, $email)
 {
     try
     {
@@ -150,32 +149,4 @@ function get_displayname($displayname, $email)
         echo $e.getMessege();
     }
 }
-=======
-
-function get_user($user)
-{
-
-}
-function is_exist($user)
-{ 
-    try 
-    {
-     $pdo = new PDO($DB_DSN.';dbname='.$tablename, $DB_USER, $DB_PASSWORD);
-      $stat = $pdo->query("SELECT * FROM userrs");
-     while ($name = $stat->fetch())
-    {
-        if($name['email'] === $email)
-       {
-          echo $name['username'];
-        header('Location: http://localhost:8080/Camagru/signup.php?error=UserExists');
-     }
-    }
-}
-    catch (PDOException $e)
-    {
-
-    }
-}
-
->>>>>>> 30cfd86cdbdb840f4a1bca2fbc2e6d2d51a33ee7
 ?>
