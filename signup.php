@@ -60,6 +60,7 @@ if (isset($_POST['submit']))
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.$tablename, $DB_USER, $DB_PASSWORD);
+<<<<<<< HEAD
         //$pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "INSERT INTO users(id, username, passwd, email, is_act , is_pen, displayname) VALUES (?,?,?,?,?,?,?)";
         $stat = $pdo->query("SELECT * FROM users");
@@ -75,9 +76,28 @@ if (isset($_POST['submit']))
         }
         $pdo->prepare($query)->execute([null,$username,$passwd,$email,0,0,'user']);
         send_act($email);
+=======
+       // $pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "INSERT INTO userrs(id, username, password, email) VALUES (?,?,?,?)";
+        $check = "SELECT * FROM userrs WHERE email=".$email;
+        $stat = $pdo->query("SELECT * FROM userrs");
+        while ($name = $stat->fetch())
+        {
+            if($name['email'] === $email)
+           {
+              echo $name['username'];
+            header('Location: http://localhost:8080/Camagru/signup.php?error=UserExists');
+                exit();
+            }
+    }
+        $pdo->prepare($query)->execute([null,$username,$passwd,$email]);
+        $subject = "Account activation";
+        $msg = "Email to activate";
+        mail("nmetseem@student.wethinkcode.co.za",$subject,$ms);
+>>>>>>> 30cfd86cdbdb840f4a1bca2fbc2e6d2d51a33ee7
         header('Location: http://localhost:8080/Camagru/login.php'); 
     }
-    catch (PDOExeption $e)
+    catch (PDOException $e)
     {
         echo $e.getMessege();
         header('Location: http://localhost:8080/Camagru/signup.php?error=ERROR'); 
