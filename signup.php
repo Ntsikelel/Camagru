@@ -6,15 +6,18 @@
     <title>Sign Up</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/signup.css" />
- 
 </head>
 <body>
     <div id = "signup">
         <form action= "signup.php" method = "post">
-            <p id = "errmsg"><?php  foreach($_GET as $key => $val)
-            {
-                echo "Error :".$val; 
-            }?></p>
+            <p id = "errmsg">
+            <?php  
+                foreach($_GET as $key => $val)
+                {
+                    echo "Error :".$val; 
+                }
+            ?>
+            </p>
             <input  type= "text" name="username" placeholder="Name" />
             <br/>
             <input  type= "email" name="email" placeholder="example@domain.com" required/>
@@ -28,6 +31,8 @@
 </html>
 <?php
     include_once ("config/database.php");
+    include_once ("mail.php");
+    include_once ("setfunc.php");
     echo $DB_DSN.$DB_PASSWORD.$DB_USER;
 if (isset($_POST['submit']))
 {
@@ -39,7 +44,7 @@ if (isset($_POST['submit']))
     $val = 'whirlpool';
     $passwd = hash($val, $_POST['passwd'],false);
     $email = $_POST['email'];
-    $tablename = "userrs;";
+    $tablename = "camagru;";
     if (!isset($passwd) || !isset($email) || !isset($username))
     {
         header('Location: http://localhost:8080/Camagru/signup.php?error=emptyfiled');
@@ -52,21 +57,24 @@ if (isset($_POST['submit']))
     {
         header('Location: http://localhost:8080/Camagru/signup.php?error=username');
     }
-    try{
-
+    try
+    {
         $pdo = new PDO($DB_DSN.';dbname='.$tablename, $DB_USER, $DB_PASSWORD);
-       // $pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = "INSERT INTO userrs(id, username, password, email) VALUES (?,?,?,?)";
-        $check = "SELECT * FROM userrs WHERE email=".$email;
-        if (empty($pdo->query($check)))
+        //$pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "INSERT INTO users(id, username, passwd, email, is_act , is_pen, displayname) VALUES (?,?,?,?,?,?,?)";
+        $stat = $pdo->query("SELECT * FROM users");
+       
+        while ($name = $stat->fetch())
         {
-            header('Location: http://localhost:8080/Camagru/signup.php?error=UserExists');
-            exit();
+            if($name['email'] === $email)
+           { echo "here2";
+            set_displayname("Got it",$email);
+                header('Location: http://localhost:8080/Camagru/signup.php?error=UserExists');
+                exit();
+            }
         }
-        $pdo->prepare($query)->execute([null,$username,$passwd,$email]);
-        $to = $email;
-        $subject = "Account activation";
-        mail($to,$subject,$msg);
+        $pdo->prepare($query)->execute([null,$username,$passwd,$email,0,0,'user']);
+        send_act($email);
         header('Location: http://localhost:8080/Camagru/login.php'); 
     }
     catch (PDOExeption $e)
