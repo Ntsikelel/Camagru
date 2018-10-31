@@ -1,15 +1,17 @@
 body
 {
     box-sizing: border-box;
-    padding: 0;
-    margin :0;
+    background-image: url('../backgr.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 #errmsg
 {
     font-family: monospace;
     font-size: 150%;
-    color: red;
-    background:gray;
+    color:#ccc;
+    background: #eee;
 }
 #signup
 {
@@ -23,7 +25,24 @@ body
     transform: translate(-50%,-50%);
     position: absolute;
     text-align: center;
+  
 
+
+}
+#logo
+{
+    top : 2%;
+    left: 1%;
+    position: absolute;
+   
+}
+#header
+{
+    height: 50px;
+    width: 100%;
+    background-color: rgba(9, 182, 144, 0.8);
+    top: 0%;
+    position: absolute;
 
 }
 #signup input
@@ -61,9 +80,7 @@ body
     width: 100%;
     margin: 20px;
     background: gray;
-    border-bottom: 1px solid gray;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    border: 1px solid gray;
     color: wheat;
 }
 a {

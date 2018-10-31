@@ -6,7 +6,7 @@ function is_exist($email,$user)
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
-      //  $pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      //  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      
         $stat = $pdo->query("SELECT * FROM users");
         while ($name = $stat->fetch())
@@ -28,7 +28,7 @@ function get_pass($pass, $email)
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
-      //  $pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      //  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        
         $stat = $pdo->query("SELECT * FROM users");
         while ($name = $stat->fetch())
@@ -49,7 +49,7 @@ function get_username($username, $email)
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
-       // $pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+       // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        
         $stat = $pdo->query("SELECT * FROM users");
         while ($name = $stat->fetch())
@@ -71,7 +71,7 @@ function get_email($emailb,$emaila)
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
-       // $pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+       // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        
         $stat = $pdo->query("SELECT * FROM users");
         while ($name = $stat->fetch())
@@ -92,7 +92,7 @@ function get_is_act($num, $email)
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
-        $pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        
         $stat = $pdo->query("SELECT * FROM users");
         while ($name = $stat->fetch())
@@ -113,7 +113,7 @@ function get_is_pen($num, $email)
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
-      //  $pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      //  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        
         $stat = $pdo->query("SELECT * FROM users");
         while ($name = $stat->fetch())
@@ -134,7 +134,7 @@ function get_displayname($displayname, $email)
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
-        //$pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stat = $pdo->query("SELECT * FROM users");
         while ($name = $stat->fetch())
         {

@@ -6,10 +6,15 @@
     <title>Sign Up</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/signup.css" />
+    <link rel= "shortcut icon" type = "image/ico" href="icon.ico"/>
 </head>
-<body>
+<body> 
+    <div id = "header">
+     <a href = "http://localhost:8080/Camagru/index.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
+    </div>
     <div id = "signup">
         <form action= "signup.php" method = "post">
+        <img src = "user.svg" width = "300" height = "300">
             <p id = "errmsg">
             <?php  
                 foreach($_GET as $key => $val)
@@ -18,30 +23,34 @@
                 }
             ?>
             </p>
-            <input  type= "text" name="username" placeholder="Name" />
+            <input  type= "text" name="username" placeholder="Name" required/>
             <br/>
             <input  type= "email" name="email" placeholder="example@domain.com" required/>
             <br/>
             <input  type= "password" name="passwd" placeholder="******" required/>
             <br/>
             <input  type= "submit" name="submit" value = "Sign Up"/><br/>
-            <a href="http://localhost:8080/Camagru/login.php">Do you already have an account</a><br/>
+            <a href="http://localhost:8080/Camagru/login.php">Do you already have an account ?</a><br/>
         </form>
     </div>
 </body>
 </html>
-<?php
-   require_once ("config/database.php");
+<?php 
+
+    require_once ("config/database.php");
     require_once ("mail.php");
     require_once ("setfunc.php");
-
-    echo $DB_DSN.$DB_PASSWORD.$DB_USER;
+     //  echo "here";
+       $DB_DSN = "mysql:host=localhost";
+       $DB_USER = "root";
+       $DB_PASSWORD = "123456";
+    //echo $DB_DSN.$DB_PASSWORD.$DB_USER;
 if (isset($_POST['submit']))
 {
-    print_r($_POST);
+   // print_r($_POST);
     if (isset($_POST['passwd']) || isset($_POST['email']) || isset($_POST['username']))
     {
-        echo "here1";
+        //echo "here1";
     $username = $_POST['username'];
     $val = 'whirlpool';
     $passwd = hash($val, $_POST['passwd'],false);
@@ -62,7 +71,7 @@ if (isset($_POST['submit']))
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.$tablename, $DB_USER, $DB_PASSWORD);
-        //$pod->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "INSERT INTO users(id, username, passwd, email, is_act , is_pen, displayname) VALUES (?,?,?,?,?,?,?)";
         $stat = $pdo->query("SELECT * FROM users");
        
