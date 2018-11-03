@@ -1,0 +1,38 @@
+html
+{
+    box-sizing: border-box;
+}
+body
+{
+    margin: 0;
+    padding: 0;
+    background-image: url('../backgr3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+#btn
+{
+    background: blue;
+}
+#open_cam
+{
+    border-radius: 50%;
+}
+#cap
+{
+    border-radius: 50%;
+    left: 20%;
+    top: 55%;
+    position: absolute;
+}
+#vid
+{
+    background: gray;
+}
+#smp_img
+{
+    border: 1px solid gray;
+    padding: 20px;
+}

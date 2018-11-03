@@ -1,6 +1,8 @@
 function open_camera()
 {
     var cam = document.getElementById('vid');
+    var btn = document.getElementById('open_cam');
+    btn.parentNode.removeChild(btn);
     var can = document.getElementById('canv');
     var cont = can.getContext('2d');
     navigator.mediaDevices.getUserMedia({video:true}).then(function(stream){cam.src = window.URL.createObjectURL(stream); cam.play();}); 
@@ -8,5 +10,7 @@ function open_camera()
     document.getElementById('cap').addEventListener("click",function()
     {
         cont.drawImage(cam,0,0,500,500);
+        var data = can.toDataURL();
+        alert(data);
     });
 }
