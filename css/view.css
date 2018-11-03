@@ -36,3 +36,8 @@ body
     border: 1px solid gray;
     padding: 20px;
 }
+#cam
+{
+    width: 800px;
+    height: 800px;
+}
