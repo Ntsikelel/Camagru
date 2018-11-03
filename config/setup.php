@@ -1,11 +1,7 @@
 <?php
-echo "hereset";
-   require_once ("config/database.php");
-  
+   require_once ("database.php");
     try
     {
-        
-        echo $DB_DSN.$DB_PASSWORD;
         $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "CREATE DATABASE IF NOT EXISTS camagru";
@@ -64,6 +60,20 @@ echo "hereset";
            is_act INT DEFAULT '0',
            is_pen INT DEFAULT '0',
            displayname VARCHAR(30) DEFAULT 'User'
+         ) ";
+        $pdo->exec($query);
+    }
+    catch (PDOException $e)
+    {
+        echo $e.getMessege(); 
+    }
+    try
+    {
+        $pdo = new PDO($DB_DSN.';dbname='.'camagru', $DB_USER, $DB_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $query = "CREATE TABLE IF NOT EXISTS TOK (
+           id INT PRIMARY KEY,
+           token VARCHAR(128) NOT NULL        
          ) ";
         $pdo->exec($query);
     }

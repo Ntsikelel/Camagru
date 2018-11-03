@@ -3,6 +3,7 @@
 
 function set_pass($pass, $email)
 {
+    require_once  ("config/database.php");
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -25,6 +26,7 @@ function set_pass($pass, $email)
 }
 function set_username($username, $email)
 {
+    require_once  ("config/database.php");
     try
     {
         $DB_DSN = "mysql:host=localhost";
@@ -49,10 +51,10 @@ function set_username($username, $email)
     {
         echo $e.getMessege();
     }
-
 }
 function set_email($emailb,$emaila)
 {
+    require_once  ("config/database.php");
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -76,8 +78,12 @@ function set_email($emailb,$emaila)
 }
 function set_is_act($num, $email)
 { 
+    //require_once  ("/goinfre/nmetseem/MAMP/apache2/htdocs/Camagru/config/setup.php");
     try
     {
+        $DB_DSN = "mysql:host=localhost";
+        $DB_USER = "root";
+        $DB_PASSWORD = "123456"; 
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        
@@ -86,7 +92,7 @@ function set_is_act($num, $email)
         {
             if($name['email'] === $email)
            { 
-               $query = "UPDATE users SET is_act = ".$num." WHERE id = ".$name[id];
+               $query = "UPDATE users SET is_act = ".$num." WHERE id = ".$name['id'];
                echo $query;
              $pdo->exec($query);
             }
@@ -99,6 +105,7 @@ function set_is_act($num, $email)
 }
 function set_is_pen($num, $email)
 {
+    require_once  ("config/database.php");
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru', $DB_USER, $DB_PASSWORD);
@@ -122,7 +129,7 @@ function set_is_pen($num, $email)
 }
 function set_displayname($displayname, $email)
 { 
- 
+    require_once  ("config/database.php");
     try
     { // echo "here3";
        

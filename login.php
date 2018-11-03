@@ -23,19 +23,19 @@
                 }
             ?>
             </p>
-            <input  type= "text" name="username" placeholder="Name" require/>
+            <input  type= "email" name="username" placeholder="example@domain.com" require/>
             <br/>
             <input  type= "password" name="passwd" placeholder="******" require/>
             <br/>
             <input  type= "submit" name="submit" value = "Login"/><br/>
             <a href="http://localhost:8080/Camagru/signup.php">Need to sign up ?</a><br/>
-            <a href="http://localhost:8080/Camagru/signup.php">Forgot your password ?</a>
+            <a href="http://localhost:8080/Camagru/resetpass.php">Forgot your password ?</a>
         </form>
     </div>
 </body>
 </html>
 <?PHP
-
+session_start();
 if (isset($_POST['submit']))
 {
     require_once  ("config/database.php");
@@ -43,8 +43,7 @@ if (isset($_POST['submit']))
     $DB_DSN = "mysql:host=localhost";
     $DB_USER = "root";
     $DB_PASSWORD = "123456";
-    echo $DB_DSN.$DB_PASSWORD.$DB_USER;
-    echo "Here";
+
 if (isset($_POST['submit']))
 {
     if (isset($_POST['passwd']) || isset($_POST['username']))
@@ -52,25 +51,21 @@ if (isset($_POST['submit']))
     $username = $_POST['username'];
     $val = 'whirlpool';
     $passwd = hash($val, $_POST['passwd'],false);
-    $tablename = "camagru;";
     echo $username.$passwd;
     try
     {
-        $pdo = new PDO($DB_DSN.';dbname='.$tablename, $DB_USER, $DB_PASSWORD);
+        $pdo = new PDO($DB_DSN.';dbname='."camagru;", $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stat = $pdo->query("SELECT * FROM users");
-      
-       
         while ($name = $stat->fetch())
         {
            print_r($name);
          
-            if($name['username'] === $username && $name['passwd'] === $passwd)
+            if($name['email'] === $username && $name['passwd'] === $passwd)
             {
                  $_SESSION['email'] = $name['email'];
                  header('Location: http://localhost:8080/Camagru/index.php');
-                 exit();
-            }
+            }  exit();
         }
         header('Location: http://localhost:8080/Camagru/login.php?error=UserNotFound'); 
     }

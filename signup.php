@@ -20,6 +20,10 @@
                 foreach($_GET as $key => $val)
                 {
                     echo "Error :".$val; 
+                    if ($val === "Signup")
+                    {
+                        echo "<a href = 'http://localhost:8080/Camagru/resendmail.php'>Resend</a> ";
+                    }
                 }
             ?>
             </p>
@@ -40,11 +44,17 @@
     require_once ("config/database.php");
     require_once ("mail.php");
     require_once ("setfunc.php");
+    require_once ("getfunc.php");
      //  echo "here";
        $DB_DSN = "mysql:host=localhost";
        $DB_USER = "root";
        $DB_PASSWORD = "123456";
     //echo $DB_DSN.$DB_PASSWORD.$DB_USER;
+ function gen_tok($email)
+{
+    return (hash("whirlpool",$email,false));
+}
+
 if (isset($_POST['submit']))
 {
    // print_r($_POST);
@@ -85,12 +95,14 @@ if (isset($_POST['submit']))
             }
         }
         $pdo->prepare($query)->execute([null,$username,$passwd,$email,0,0,'user']);
-        send_act($email);
+        $query_t = "INSERT INTO tok(id, token) VALUES (?,?)";
+        send_act($email,$tok = gen_tok($email)); 
+        $pdo->prepare($query_t)->execute([get_id($email),$tok]);
         header('Location: http://localhost:8080/Camagru/login.php'); 
     }
     catch (PDOException $e)
     {
-        echo $e.getMessege();
+       // echo $e.getMessege();
         header('Location: http://localhost:8080/Camagru/signup.php?error=ERROR'); 
     }
 }

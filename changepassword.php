@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id = "signup">
-        <form action= "signup.php" method = "post">
+        <form action= "changepassword.php" method = "post">
             <p id = "errmsg">
             <?php  
                 foreach($_GET as $key => $val)

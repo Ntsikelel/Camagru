@@ -31,15 +31,14 @@ function view_img(num)
     if(norep === false){
     var btn = document.createElement("BUTTON");
     btn.id = "save";
-    btn.innerHTML =' <img src= "save_image.jpg" width ="100" height = "100" style= "border-radius: 50%;"/>';
+    btn.innerHTML =' <img src= "upload.png" width ="50" height = "50" style= "border-radius: 30%;"/>';
     btn.width = 100;
     btn.height = 100;
     btn.style.background = "transparent";
     btn.style.border = "none";
-    var text = document.createTextNode("Save");
+    var text = document.createTextNode("");
     btn.appendChild(text);
-    
-        document.getElementById('cam').appendChild(btn);
+    document.getElementById('cam').appendChild(btn);
     norep = true;
 }
     document.getElementById('save').addEventListener("click",function()
