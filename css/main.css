@@ -1,0 +1,128 @@
+html
+{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+    display: grid;
+    /* background: cornsilk; */
+    grid-template-rows: 3.5rem 1fr 1fr;
+    /* grid-gap: 20px; */
+    
+}
+#logo
+{
+    border-radius: 50%;
+}
+#images
+{
+    display: grid;
+    grid-gap: 20px;
+    top: 60%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* position: absolute; */
+}
+#like_com
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: 50px;
+    margin: 20px;
+}
+#image
+{
+    /* height: 50px; */
+    width: 100%;
+    display: grid;
+    /* background: #ccc; */
+    /* top: 50%; */
+    /* border: 1px solid gray; */
+    box-shadow: 2px 2px #888888;
+    position: relative;
+    /* border: 6px solid #333; */
+}
+#nav
+{
+    /* display: inline-block;
+    left:90%;
+    position: relative; */
+    
+}
+#logo
+{
+    top : 2%;
+    left: 1%;
+    position: relative;
+   
+}
+#header
+{
+    height: 50px;
+    width: 100%;
+    background-color: rgba(9, 182, 144, 0.8);
+    display: grid;
+    grid-template-columns: 90% 10%;
+    /* top: 0%; */
+    /* position: relative; */
+}
+#btn
+{
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+    margin: 5px;
+    padding: 20px;
+    border-radius: 5%;
+}
+#bod_con
+{
+    height: auto;
+    width: auto;
+    display: grid;
+    grid-gap: 5px;
+    /* background-color: black; */
+    /* background-image: url('../mirrorless-camera-2x1-fullres-2024-1024x512.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; */
+    position: relative;
+}
+#cam_img
+{
+    display: grid;
+}
+#cam_img_id
+{
+    width: 100%;
+    box-shadow: 2px 2px #888888;
+  
+}
+@media only screen and (min-width:320px) and (max-width:600px)
+{
+    body
+    {
+    display: grid;
+    grid-template-rows: 4rem 1fr;    
+    }
+    #images
+    { 
+    grid-template-columns: 1fr;
+    }
+}
+@media only screen and (min-width:601px) and (max-width:800px)
+{
+    #images
+    { 
+      grid-template-columns: 1fr 1fr;
+    }
+}
+@media only screen and (min-width:801px) and (max-width:1000px)
+{
+    #images
+    { 
+    grid-template-columns: 1fr 1fr 1fr;
+    }
+}
