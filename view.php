@@ -52,7 +52,7 @@ session_start();
       //  header('Location: http://localhost:8080/Camagru/signup.php');
       //  print_r($_POST);
      // header('Content-Type: image/png');
-        //add_img(strchr($_POST['image'],","));
+        add_img(getcwd()."/img_s/image".$_SESSION['email'].".png");
         // if (mkdir("img_s",0777) === false)
         // {
         // file_put_contents("img_s/",base64_decode(strchr($_POST['image'],",")));
@@ -60,6 +60,7 @@ session_start();
         // else
         // {
             echo getcwd()."/img_s/";
+            echo base64_decode($_POST['image']);
         file_put_contents(getcwd()."/img_s/image".$_SESSION['email'].".png",base64_decode(strchr($_POST['image'],",")));
     //  }
     }
