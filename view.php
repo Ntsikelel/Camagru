@@ -26,7 +26,6 @@
             <td id= "smp_img_block"><img src="smp5.png" width="100" height = "100" onclick="view_img(5)" id = "smp5"></td>
         </tr>
     </table>
-  
     <img src = "camera1.jpg" onclick= "open_camera()" id = "open_cam" width="60" height = "60">
     <img src = "camera1.jpg" id = "cap" width="60" height = "60">
     <canvas id = "canv" width="6400" height = "400" style= "background: transparent"></canvas>
@@ -60,7 +59,6 @@ session_start();
         // else
         // {
             echo getcwd()."/img_s/";
-            echo base64_decode($_POST['image']);
         file_put_contents(getcwd()."/img_s/image".$_SESSION['email'].".png",base64_decode(strchr($_POST['image'],",")));
     //  }
     }
