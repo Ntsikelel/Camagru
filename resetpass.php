@@ -13,7 +13,7 @@
      <a href = "http://localhost:8080/Camagru/index.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
     </div>
     <div id = "signup">
-        <form action= "reset.php.php" method = "post">
+        <form action= "resetpass.php" method = "post">
         <img src = "user.svg" width = "300" height = "300"/>
         <p id = "errmsg">
             <?php  
@@ -27,14 +27,47 @@
             <br/>
             <input  type= "submit" name="submit" value = "Login"/><br/>
             <a href="http://localhost:8080/Camagru/signup.php">Need to sign up ?</a><br/>
-            <a href="http://localhost:8080/Camagru/signup.php">Forgot your password ?</a>
+            <a href="http://localhost:8080/Camagru/login.php">Login ?</a>
         </form>
     </div>
 </body>
 </html>
 <?PHP
-require_once("mail.php");
+require_once ("config/database.php");
+require_once ("mail.php");
+require_once ("getfunc.php");
+require_once ("tok.php");
+require_once ("setfunc.php");
 if (isset($_POST['submit']))
 {
+    if(isset($_POST['email']))
+    {
+        $email = $_POST['email'];
+        try
+        {
+           
+            $pdo = new PDO($DB_DSN.';dbname='."camagru;", $DB_USER, $DB_PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stat = $pdo->query("SELECT * FROM users");
+            while ($name = $stat->fetch())
+            {
+                if($name['email'] === $email)
+                {   
+                    $query_t = "INSERT INTO tok(id, token) VALUES (?,?)";
+                    res_pass($email,$tok = gen_tok($email));
+                    $pdo->prepare($query_t)->execute([get_id($email),$tok]); 
+                    set_is_act(0,$email);
+                    header('Location: http://localhost:8080/Camagru/login.php'); 
+                    exit();
+                }
+            } 
+            header('Location: http://localhost:8080/Camagru/ca.php?error=NotFound'); 
+        }
+        catch (PDOException $e)
+        {
+           // echo $e.getMessege();
+            header('Location: http://localhost:8080/Camagru/resetpass.php?error=emailsent'); 
+        }
+    }
 }
 ?>

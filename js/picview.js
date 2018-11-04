@@ -34,8 +34,10 @@ function view_img(num)
     btn.innerHTML =' <img src= "upload.png" width ="50" height = "50" style= "border-radius: 30%;"/>';
     btn.width = 100;
     btn.height = 100;
+    // btn.setAttribute("type", "Submit");
     btn.style.background = "transparent";
     btn.style.border = "none";
+    alert(btn);
     var text = document.createTextNode("");
     btn.appendChild(text);
     document.getElementById('cam').appendChild(btn);
@@ -44,7 +46,18 @@ function view_img(num)
     document.getElementById('save').addEventListener("click",function()
     {
         var data = can.toDataURL();
+        var info = document.createElement("INPUT");
+        info.id = "image";
+        info.setAttribute("type","text");
+        info.setAttribute("id","image");
+        info.setAttribute("value",data);
+        info.value = data;
+      
         alert(data);
+        document.getElementById('image_data').appendChild(info);
+         alert(document.getElementById('image').value);
+        alert("Wait"); 
+         document.getElementById('sub').click();
         // "<?php  header('Location: http://localhost:8080/Camagru/login.php');?> ";
     });
 }

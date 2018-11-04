@@ -65,7 +65,6 @@ if (isset($_POST['submit']))
     $val = 'whirlpool';
     $passwd = hash($val, $_POST['passwd'],false);
     $email = $_POST['email'];
-    $tablename = "camagru;";
     if (!isset($passwd) || !isset($email) || !isset($username))
     {
         header('Location: http://localhost:8080/Camagru/signup.php?error=emptyfiled');
@@ -80,7 +79,7 @@ if (isset($_POST['submit']))
     }
     try
     {
-        $pdo = new PDO($DB_DSN.';dbname='.$tablename, $DB_USER, $DB_PASSWORD);
+        $pdo = new PDO($DB_DSN.';dbname='."camagru;", $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "INSERT INTO users(id, username, passwd, email, is_act , is_pen, displayname) VALUES (?,?,?,?,?,?,?)";
         $stat = $pdo->query("SELECT * FROM users");

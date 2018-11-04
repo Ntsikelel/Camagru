@@ -6,6 +6,9 @@ function set_pass($pass, $email)
     require_once  ("config/database.php");
     try
     {
+        $DB_DSN = "mysql:host=localhost";
+        $DB_USER = "root";
+        $DB_PASSWORD = "123456";
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stat = $pdo->query("SELECT * FROM users");
@@ -13,7 +16,7 @@ function set_pass($pass, $email)
         {
             if($name['email'] === $email)
            { 
-               $query = "UPDATE users SET passwd = ".$pass." WHERE id = ".$name[id];
+               $query = "UPDATE users SET passwd = "."'$pass'"." WHERE id = ".$name['id'];
                echo $query;
              $pdo->exec($query);
             }
@@ -34,14 +37,13 @@ function set_username($username, $email)
         $DB_PASSWORD = "123456"; 
         echo $DB_DSN."Database1"; 
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
-       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-       
+          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stat = $pdo->query("SELECT * FROM users");
         while ($name = $stat->fetch())
         {
             if($name['email'] === $email)
            { 
-               $query = "UPDATE users SET username = "."'$username'"." WHERE id = ".$name[id];
+               $query = "UPDATE users SET username = "."'$username'"." WHERE id = ".$name['id'];
                echo $query;
              $pdo->exec($query);
             }
@@ -65,7 +67,7 @@ function set_email($emailb,$emaila)
         {
             if($name['email'] === $emailb)
            { 
-               $query = "UPDATE users SET email = "."'$emaila'"." WHERE id = ".$name[id];
+               $query = "UPDATE users SET email = "."'$emaila'"." WHERE id = ".$name['id'];
                echo $query;
              $pdo->exec($query);
             }
@@ -116,7 +118,7 @@ function set_is_pen($num, $email)
         {
             if($name['email'] === $email)
            { 
-               $query = "UPDATE users SET is_pen = ".$num." WHERE id = ".$name[id];
+               $query = "UPDATE users SET is_pen = ".$num." WHERE id = ".$name['id'];
                echo $query;
              $pdo->exec($query);
             }
@@ -151,7 +153,7 @@ function set_displayname($displayname, $email)
             if($name['email'] === $email)
            {   
                
-               $query = "UPDATE users SET displayname ="."'$displayname'"." WHERE id =".$name[id];
+               $query = "UPDATE users SET displayname ="."'$displayname'"." WHERE id =".$name['id'];
                echo $query; 
                $pdo->exec($query); 
             }

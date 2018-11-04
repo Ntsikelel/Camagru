@@ -1,6 +1,4 @@
-<?PHP
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +10,9 @@
     <title>View</title>
 </head>
 <body>
+<div id = "header">
+     <a href = "http://localhost:8080/Camagru/index.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
+    </div>
     <div id ="cam">
     <video id= "vid" width="600" height = "600" style= "background : black"></video> 
       <script src= "js/picview.js"></script>
@@ -28,6 +29,30 @@
     <img src = "camera1.jpg" onclick= "open_camera()" id = "open_cam" width="60" height = "60">
     <img src = "camera1.jpg" id = "cap" width="60" height = "60">
     <canvas id = "canv" width="6400" height = "400" style= "background: transparent"></canvas>
+    <form  action="view.php" method="post" id="image_data" onsubmit= "alert('Submit')">
+    <!-- <input type = "text" id = "image" value="her"/> -->
+    <input type = "submit" name="submit" id = "sub"/>
+    </form>
     </div>
 </body>
 </html>
+
+<?php
+   require_once("add.php");
+   if(isset($_POST['submit']))
+   {
+       print_r($_POST);
+   }
+    if(isset($_POST['image']))
+    {
+     
+      //  header('Location: http://localhost:8080/Camagru/signup.php');
+      //  print_r($_POST);
+      header('Content-Type: image/png');
+       sleep(100000);
+      exit();
+     add_img(strchr($_POST['image'],","));
+    file_put_contents("img_s/",base64_decode(strchr($_POST['image'],",")));
+    }
+    
+?>

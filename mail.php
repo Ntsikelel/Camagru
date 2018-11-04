@@ -53,7 +53,7 @@ function comment_like_mail($email)
     $header .= "Reply-To: nmetseem@student.wethinkcode.co.za \n";
     mail($email,$subject,$msg, $header);
 }
-function res_pass($email)
+function res_pass($email,$tok)
 {
     $subject = "Reset Password";
     $msg = "<html><body> 
@@ -64,7 +64,7 @@ function res_pass($email)
     <h1 id = 'Head'>Email to activate</h1>";
     $msg .= "<img src= 'https://cmzone-vzbqbxhynotw9ion96xv.netdna-ssl.com/wp-content/uploads/2015/11/canon1.jpg'/>
     <br/>";
-    $msg .= "<a href='http://localhost:8080/Camagru/resetpass.php?email=$email&tok=$tok' id ='linkbtn'>Click to activate account</a></body></html>";
+    $msg .= "<a href='http://localhost:8080/Camagru/changepassword.php?email=$email&tok=$tok' id ='linkbtn'>Click to activate account</a></body></html>";
     //.$email."&token=".gen_token($email)." id ='linkbtn'>Activate</a>
     $header ="From : noreply@camagru.com \n";
     $header .= "Reply-To: nmetseem@student.wethinkcode.co.za \n";
