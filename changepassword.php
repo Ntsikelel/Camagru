@@ -51,6 +51,8 @@ if(isset($_POST['submit']))
         {
             $email = $_GET['email'];
             $tok = $_GET['tok'];
+            echo $tok;
+            exit();
     try
     {
     $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);

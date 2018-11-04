@@ -10,6 +10,7 @@
     <title>View</title>
 </head>
 <body>
+    <div id="cont">
 <div id = "header">
      <a href = "http://localhost:8080/Camagru/index.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
     </div>
@@ -18,11 +19,11 @@
       <script src= "js/picview.js"></script>
     <table>
         <tr id="smp_img">
-            <td><img src="smp1.png" width="100" height = "100" onclick="view_img(1)" id = "smp1"></td>
-            <td><img src="smp2.png" width="100" height = "100" onclick="view_img(2)" id = "smp2"></td>
-            <td><img src="smp3.png" width="100" height = "100" onclick="view_img(3)" id = "smp3"></td>
-            <td><img src="smp4.png" width="100" height = "100" onclick="view_img(4)" id = "smp4"></td>
-            <td><img src="smp5.png" width="100" height = "100" onclick="view_img(5)" id = "smp5"></td>
+            <td id= "smp_img_block"><img src="smp1.png" width="100" height = "100" onclick="view_img(1)" id = "smp1"></td>
+            <td id= "smp_img_block"><img src="smp2.png" width="100" height = "100" onclick="view_img(2)" id = "smp2"></td>
+            <td id= "smp_img_block"><img src="smp3.png" width="100" height = "100" onclick="view_img(3)" id = "smp3"></td>
+            <td id= "smp_img_block"><img src="smp4.png" width="100" height = "100" onclick="view_img(4)" id = "smp4"></td>
+            <td id= "smp_img_block"><img src="smp5.png" width="100" height = "100" onclick="view_img(5)" id = "smp5"></td>
         </tr>
     </table>
   
@@ -34,25 +35,34 @@
     <input type = "submit" name="submit" id = "sub"/>
     </form>
     </div>
+</div>
 </body>
 </html>
 
 <?php
+session_start();
    require_once("add.php");
    if(isset($_POST['submit']))
    {
        print_r($_POST);
-   }
+   
     if(isset($_POST['image']))
     {
      
       //  header('Location: http://localhost:8080/Camagru/signup.php');
       //  print_r($_POST);
-      header('Content-Type: image/png');
-       sleep(100000);
-      exit();
-     add_img(strchr($_POST['image'],","));
-    file_put_contents("img_s/",base64_decode(strchr($_POST['image'],",")));
+     // header('Content-Type: image/png');
+        //add_img(strchr($_POST['image'],","));
+        // if (mkdir("img_s",0777) === false)
+        // {
+        // file_put_contents("img_s/",base64_decode(strchr($_POST['image'],",")));
+        // }
+        // else
+        // {
+            echo getcwd()."/img_s/";
+        file_put_contents(getcwd()."/img_s/image".$_SESSION['email'].".png",base64_decode(strchr($_POST['image'],",")));
+    //  }
     }
+}
     
 ?>

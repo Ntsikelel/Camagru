@@ -48,6 +48,7 @@ function view_img(num)
         var data = can.toDataURL();
         var info = document.createElement("INPUT");
         info.id = "image";
+        info.setAttribute("name","image");
         info.setAttribute("type","text");
         info.setAttribute("id","image");
         info.setAttribute("value",data);
@@ -55,7 +56,7 @@ function view_img(num)
       
         alert(data);
         document.getElementById('image_data').appendChild(info);
-         alert(document.getElementById('image').value);
+         alert("This is name : "+document.getElementById('image').getAttribute("name"));
         alert("Wait"); 
          document.getElementById('sub').click();
         // "<?php  header('Location: http://localhost:8080/Camagru/login.php');?> ";

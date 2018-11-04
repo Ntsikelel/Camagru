@@ -12,6 +12,10 @@ body
     background-position: center;
 
 }
+#cont
+{
+    display: grid;
+}
 #logo
 {
     top : 2%;
@@ -47,6 +51,11 @@ body
     background: gray;
 }
 #smp_img
+{
+    border: 1px solid gray;
+    padding: 20px;
+}
+#smp_img_block
 {
     border: 1px solid gray;
     padding: 20px;
