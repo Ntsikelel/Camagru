@@ -169,4 +169,64 @@ function get_displayname($displayname, $email)
         echo $e.getMessege();
     }
 }
+    function get_pictures()  
+    {
+        $DB_DSN = "mysql:host=localhost";
+        $DB_USER = "root";
+        $DB_PASSWORD = "123456";
+        try
+    {
+        $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stat = $pdo->query("SELECT * FROM pictures");
+        if ($name = $stat->fetch())
+        {
+                return ($name['path']);
+              //  exit();
+        }
+    }
+    catch (PDOException $e)
+    {
+        echo $e.getMessege();
+    }
+ }
+    function get_pic_id()
+    {
+        try
+        {
+            $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stat = $pdo->query("SELECT * FROM pictures");
+            while ($name = $stat->fetch())
+            {
+                    echo ($name['id']);
+            }
+        }
+        catch (PDOException $e)
+        {
+            echo $e.getMessege();
+        }
+    }
+   function get_pic_num()
+   {
+    try
+    {
+        $DB_DSN = "mysql:host=localhost";
+        $DB_USER = "root";
+        $DB_PASSWORD = "123456";
+        $count = 0;
+        $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stat = $pdo->query("SELECT * FROM pictures");
+        while ($name = $stat->fetch())
+        {
+                $count++;
+        }
+        return ($count);
+    }
+    catch (PDOException $e)
+    {
+        echo $e.getMessege();
+    }
+   }
 ?>

@@ -28,7 +28,7 @@
     </table>
     <img src = "camera1.jpg" onclick= "open_camera()" id = "open_cam" width="60" height = "60">
     <img src = "camera1.jpg" id = "cap" width="60" height = "60">
-    <canvas id = "canv" width="6400" height = "400" style= "background: transparent"></canvas>
+    <canvas id = "canv" width="500" height = "500" style= "background: transparent"></canvas>
     <form  action="view.php" method="post" id="image_data" onsubmit= "alert('Submit')">
     <!-- <input type = "text" id = "image" value="her"/> -->
     <input type = "submit" name="submit" id = "sub"/>
@@ -43,23 +43,26 @@ session_start();
    require_once("add.php");
    if(isset($_POST['submit']))
    {
-       print_r($_POST);
+       //print_r($_POST);
    
     if(isset($_POST['image']))
     {
-     
+    
+       
       //  header('Location: http://localhost:8080/Camagru/signup.php');
       //  print_r($_POST);
      // header('Content-Type: image/png');
-        add_img(getcwd()."/img_s/image".$_SESSION['email'].".png");
+     $rand = rand();
+        add_img("img_s/image".$_SESSION['email'].$rand.".png",$_SESSION['email']);
         // if (mkdir("img_s",0777) === false)
         // {
         // file_put_contents("img_s/",base64_decode(strchr($_POST['image'],",")));
         // }
         // else
         // {
-            echo getcwd()."/img_s/";
-        file_put_contents(getcwd()."/img_s/image".$_SESSION['email'].".png",base64_decode(strchr($_POST['image'],",")));
+           // echo getcwd()."/img_s/";
+        file_put_contents("img_s/image".$_SESSION['email'].$rand.".png",base64_decode(strchr($_POST['image'],",")));
+        header('Location: http://localhost:8080/Camagru/mainview.php?Saved');
     //  }
     }
 }

@@ -8,7 +8,7 @@
     can = document.getElementById('canv');
     var btn = document.getElementById('open_cam');
     btn.parentNode.removeChild(btn);
- 
+
     var cont = can.getContext('2d');
     navigator.mediaDevices.getUserMedia({video:true}).then(function(stream){cam.src = window.URL.createObjectURL(stream); cam.play();}); 
     
