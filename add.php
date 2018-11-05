@@ -8,16 +8,14 @@ function add_img($data, $email)
         $DB_USER = "root";
         $DB_PASSWORD = "123456";   
     try
-{
-    $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- 
-            $query = "INSERT INTO pictures(id, path, picture_name, likes, is_pen) VALUES (".get_id($email).",'$data','image.png',0,0)";
-            echo $query;
-            header('Location: http://localhost:8080/Camagru/view.php?'.$query);
-            $pdo->exec($query);
+    {
 
-}
+     $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
+     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     $query = "INSERT INTO pictures(id, path, picture_name, likes, is_pen) VALUES (".get_id($email).",'$data','image.png',0,0)";
+         $pdo->exec($query);
+
+    }
 catch (PDOException $e)
 {
    // echo $e.getMessege();

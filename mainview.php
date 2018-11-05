@@ -28,7 +28,7 @@
                 <?php 
                 require_once ("getfunc.php"); 
                 $pic = get_pic_num(); 
-                while($pic > 0){
+                while($pic >= 0){
                 
                     echo ' 
                     <div id = "image">
@@ -41,7 +41,7 @@
                             <input type = "text" name = "com" placeholder="Comment" required>
                        <input type ="submit" name = "comment" id = "comment"> <img src = "comment.png" width="50" height="50" onclick=""/>
                     </form>
-                    </div>';
+                    </div> </div>';
                     $pic--;
                 }
                 ?>

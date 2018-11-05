@@ -36,7 +36,7 @@
         $pdo = new PDO($DB_DSN.';dbname='.'camagru', $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $query = "CREATE TABLE IF NOT EXISTS pictures (
-           id INT AUTO_INCREMENT PRIMARY KEY,
+           id INT PRIMARY KEY,
            path VARCHAR(1024),
            picture_name VARCHAR(128),
            likes INT DEFAULT '0',
