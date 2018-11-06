@@ -22,7 +22,7 @@ catch (PDOException $e)
  //   header('Location: http://localhost:8080/Camagru/signup.php?error= "Signup"');
 }
 }
-function add_comment($mes, $email)
+function add_comment($mes, $email,$imgid)
 {
 
     $DB_DSN = "mysql:host=localhost";
@@ -38,7 +38,7 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    // if($name['email'] === )
   // { 
        
-        $query = "INSERT INTO comments(id, comment) VALUES (".get_id($email).",'$mes')";
+        $query = "INSERT INTO comments(id,u_id, comment) VALUES (".$imgid.",".get_id($email).",'$mes')";
         comment_like_mail($email);
        // get_email_by_id(get_id($email));
         $pdo->exec($query);

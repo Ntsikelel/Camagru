@@ -27,6 +27,7 @@
            
                 <?php 
                 require_once ("getfunc.php"); 
+                //session_start();
                 $pic = get_pic_num(); 
                 $arr = get_pictures();
                 $arr_id = get_pic_id();
@@ -40,11 +41,13 @@
                         <form action ="mainview.php" method="post">
                              <input type ="submit" name = "like" id ="like" > <img src = "like.jpg" width="50" height="50" onclick=""/>
                              <input type = "hidden" name = "imgid" value='.$arr_id[$counter-1].'>
+                             <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
                         </form>
                         <form action ="mainview.php" method="post">
                             <input type = "text" name = "com" placeholder="Comment" required>
                             <input type = "hidden" name = "imgid" value='.$arr_id[$counter-1].'>
                        <input type ="submit" name = "comment" id = "comment"> <img src = "comment.png" width="50" height="50" onclick=""/>
+                       <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
                     </form>
                     </div> </div>';
                     $counter++;
@@ -74,7 +77,7 @@
           }
           if(isset($_POST['comment']))
           {
-            add_comment($_POST['com'],$_SESSION['email']);
+            add_comment($_POST['com'],$_SESSION['email'],$_POST['imgid']);
             header('Location:  http://localhost:8080/Camagru/mainview.php?comment');
           }
           //get_pictures();

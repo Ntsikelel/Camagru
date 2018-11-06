@@ -55,6 +55,7 @@
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $query = "CREATE TABLE IF NOT EXISTS Comments (
            id INT ,
+           u_id INT ,
            comment VARCHAR(1024) NOT NULL 
          ) ";
         $pdo->exec($query);
