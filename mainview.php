@@ -28,21 +28,27 @@
                 <?php 
                 require_once ("getfunc.php"); 
                 $pic = get_pic_num(); 
-                while($pic >= 0){
+                $arr = get_pictures();
+                $arr_id = get_pic_id();
+                $counter= 1;
+                while($pic-- > 0){
                 
                     echo ' 
                     <div id = "image">
-                        <img src="'.get_pictures().'" width="400" height="400"/>
+                        <img src="'.$arr[$counter].'" width="400" height="400"/>
                         <div id="like_com">
                         <form action ="mainview.php" method="post">
                              <input type ="submit" name = "like" id ="like" > <img src = "like.jpg" width="50" height="50" onclick=""/>
+                             <input type = "hidden" name = "imgid" value='.$arr_id[$counter-1].'>
                         </form>
                         <form action ="mainview.php" method="post">
                             <input type = "text" name = "com" placeholder="Comment" required>
+                            <input type = "hidden" name = "imgid" value='.$arr_id[$counter-1].'>
                        <input type ="submit" name = "comment" id = "comment"> <img src = "comment.png" width="50" height="50" onclick=""/>
                     </form>
                     </div> </div>';
-                    $pic--;
+                    $counter++;
+                    //$pic--;
                 }
                 ?>
                 </div>
@@ -62,12 +68,13 @@
        // header('Location: http://localhost:8080/Camagru/mainview.php?submit');
           if(isset($_POST['like']))
           {
-            add_like(get_id($_POST['email']));
-            header('Location:  http://localhost:8080/Camagru/mainview.php?like=id');
+              $email =$_SESSION['email'];
+            add_like($id = get_id($email),$uid = $_POST['imgid']);
+            header('Location:  http://localhost:8080/Camagru/mainview.php?like&id='.$id."&uid=".$uid);
           }
           if(isset($_POST['comment']))
           {
-            add_comment($_POST['com']);
+            add_comment($_POST['com'],$_SESSION['email']);
             header('Location:  http://localhost:8080/Camagru/mainview.php?comment');
           }
           //get_pictures();

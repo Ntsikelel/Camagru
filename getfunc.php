@@ -46,7 +46,29 @@ function get_id($email)
         echo $e.getMessege();
     }
 }
-
+function get_uid($email)
+{
+    $DB_DSN = "mysql:host=localhost";
+    $DB_USER = "root";
+    $DB_PASSWORD = "123456";
+    try
+    {
+        $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stat = $pdo->query("SELECT * FROM users");
+        while ($name = $stat->fetch())
+        {
+            if($name['email'] === $email)
+            {
+               return ($name['id']);
+            }
+        }
+    }
+    catch (PDOException $e)
+    {
+        echo $e.getMessege();
+    }
+}
 function get_pass($pass, $email)
 {
     try
@@ -99,6 +121,32 @@ function get_email($emailb,$emaila)
         {
             if($name['email'] === $emailb)
            { 
+            return ($name['email']);
+            }
+        }
+    }
+    catch (PDOException $e)
+    {
+        echo $e.getMessege();
+    }
+}
+function get_email_by_id($id)
+{
+    try
+    {
+        $DB_DSN = "mysql:host=localhost";
+        $DB_USER = "root";
+        $DB_PASSWORD = "123456";
+        
+        $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stat = $pdo->query("SELECT * FROM users");
+        //sleep(100000);
+        while ($name = $stat->fetch())
+        {
+            if($name['id'] === $id)
+           { 
+              // sleep(100000);
             return ($name['email']);
             }
         }
@@ -179,11 +227,13 @@ function get_displayname($displayname, $email)
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stat = $pdo->query("SELECT * FROM pictures");
-        if ($name = $stat->fetch())
+        $arr[] = array();
+        while ($name = $stat->fetch())
         {
-                return ($name['path']);
+                $arr[] =  $name['path'];
               //  exit();
         }
+        return ($arr);
     }
     catch (PDOException $e)
     {
@@ -192,6 +242,9 @@ function get_displayname($displayname, $email)
  }
     function get_pic_id()
     {
+        $DB_DSN = "mysql:host=localhost";
+        $DB_USER = "root";
+        $DB_PASSWORD = "123456";
         try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -199,9 +252,11 @@ function get_displayname($displayname, $email)
             $stat = $pdo->query("SELECT * FROM pictures");
             while ($name = $stat->fetch())
             {
-                    echo ($name['id']);
+                $arr[] = ($name['id']);
             }
+            return ($arr);
         }
+        
         catch (PDOException $e)
         {
             echo $e.getMessege();
