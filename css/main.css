@@ -6,6 +6,10 @@ html
 body
 {
     box-sizing: border-box; 
+    background-image: url('../backgr.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     margin: 0;
     padding: 0;
     display: grid;
@@ -30,8 +34,8 @@ body
 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-left: 50px;
-    margin: 20px;
+    /* padding-left: 50px;
+    margin: 20px; */
 }
 #image
 {
@@ -92,6 +96,7 @@ body
     width: auto;
     display: grid;
     grid-gap: 5px;
+    /* grid-template-columns: 3fr 1fr; */
     /* background-color: black; */
     /* background-image: url('../mirrorless-camera-2x1-fullres-2024-1024x512.jpg');
     background-repeat: no-repeat;
@@ -101,6 +106,7 @@ body
 #cam_img
 {
     display: grid;
+    grid-template-columns: 3fr 1fr;
 }
 #cam_img_id
 {
@@ -148,4 +154,9 @@ body
     { 
      grid-template-columns: 1fr 1fr 1fr;
     }
+}
+#put_com
+{
+    padding: 2px;
+    border-bottom: 1px solid grey;
 }

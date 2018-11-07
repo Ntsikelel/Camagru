@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/signup.css" />
+    <link rel= "shortcut icon" type = "image/ico" href="icon.ico"/>
 </head>
 <body>
+<div id = "header">
+     <a href = "http://localhost:8080/Camagru/index.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
+    </div>
 <div id = "signup">
+<img src = "user.svg" width = "300" height = "300">
         <form action= "editprofile.php" method = "post">
             <p id = "errmsg">
             <?php  

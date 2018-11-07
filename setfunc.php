@@ -166,4 +166,9 @@ function set_displayname($displayname, $email)
         echo $e.getMessege();
     }
 }
+function set_logout()
+{
+    session_start();
+    session_destroy();
+}
 ?>
