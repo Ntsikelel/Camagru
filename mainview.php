@@ -23,8 +23,10 @@
 <div id= "cont">
 <div id ="bod_con">
     <div id="cam_img">
-        <img src="mirrorless-camera-2x1-fullres-2024-1024x512.jpg" id = "cam_img_id" height="400" style="padding-left:10px;padding-right:40px;padding-top:40px;margin-right:40px;"/>
+        <img src="mirrorless-camera-2x1-fullres-2024-1024x512.jpg" id = "cam_img_id" height="400" width= "1000"style="padding:40px; background:rgba(255,0,0,0.8);"/>
         <!-- <img src="backgr3.jpg" id = "cam_img_id" height="400" style="padding:10px;"/> -->
+        <div id = "sidebar">
+        </div>
     </div>
     <div id = "images">
     
@@ -53,12 +55,26 @@
                 <input type ="submit" name = "comment" id = "comment"> <img src = "comment.png" width="50" height="50" onclick=""/>
                 <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
                 </form>
-                </div>'.$com.'</div>';
+                </div><img src= "show_com.png" width= "70" height="30"onclick= "show('.$arr_id[$counter - 1].')"><div style = "display:none;"id = "com_show'.$arr_id[$counter - 1].'">'.$com.'</div></div>';
                 $counter++;
                 //$pic--;
             }
             ?>
             </div>
+            <script>
+            function show(theid){
+                
+               var show = document.getElementById('com_show'+theid);
+                if (show.style.display === 'none')
+        {
+          show.style.display = 'block';
+        }
+         else
+    {
+    show.style.display = 'none';
+    }
+}
+            </script>
 </div>
 <a href="http://localhost:8080/Camagru/view.php"><img src="camera1.jpg"  width = "100" height = "100" id="camera"/></a> 
 <a href="http://localhost:8080/Camagru/upload.php"><img src="upload.png"  width = "100" height = "100" id="camera"/></a> 

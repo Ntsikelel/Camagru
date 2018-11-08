@@ -62,3 +62,15 @@ function view_img(num)
         // "<?php  header('Location: http://localhost:8080/Camagru/login.php');?> ";
     });
 }
+
+
+
+var show = document.getElementById('com_show');
+if (show.style.display === 'none')
+{
+    show.style.display = 'block';
+}
+ else
+ {
+    show.style.display = 'none';
+}

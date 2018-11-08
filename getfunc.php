@@ -297,8 +297,8 @@
         $arr = "";   
         while ($name = $stat->fetch())
         {
-                $arr .=   '<p id = "put_com" style= "padding: 2px;
-                border-bottom: 1px solid grey; color:grey;">'.$name['comment'].'</p>';
+                $arr .=   '<div id="c" ><p id = "put_com" style= "padding: 2px;
+                border-bottom: 1px solid grey; color:grey;">'.$name['comment'].'</p></div>';
         }  
          return ($arr);
     }

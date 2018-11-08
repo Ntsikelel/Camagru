@@ -28,8 +28,9 @@
             <input  type= "email" name="email" placeholder="example@domain.com" require/>
             <br/>
             <input  type= "text" name="displayname" placeholder="Display Name" />
-            <br/>
+            <br/>Recieve Email <input type= "checkbox" name = "Recieve Email" checked>
             <input  type= "submit" name="submit" value = "Edit Profile"/>
+          
         </form>
     </div>
 </body>
