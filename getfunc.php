@@ -309,4 +309,28 @@
     }
 
     }
+    function get_pic_like($id)
+    {
+        $DB_DSN = "mysql:host=localhost";
+        $DB_USER = "root";
+        $DB_PASSWORD = "123456";
+        try
+        {
+            $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stat = $pdo->query("SELECT * FROM pictures WHERE id=".$id);
+       
+        while ($name = $stat->fetch())
+        {
+            return ($name['likes']);
+        }  
+     
+    }
+  
+    catch (PDOException $e)
+    {
+        echo $e.getMessege();
+    }
+
+    }
     ?>

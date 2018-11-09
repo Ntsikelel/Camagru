@@ -37,15 +37,18 @@
             $arr = get_pictures();
             $arr_id = get_pic_id();
             $counter= 1;
+            $likes = 0;
+           
         // $com_c = get_com();
             while($pic-- > 0){
                 $com = show_com($arr_id[$counter-1]);
+                 $likes = get_pic_like($arr_id[$counter-1]);
                 echo ' 
                 <div id = "image">
                     <img src="'.$arr[$counter].'" width="400" height="400"/>
                     <div id="like_com">
-                    <form action ="mainview.php" method="post">
-                        <input type ="submit" name = "like" id ="like" > <img src = "like.jpg" width="50" height="50" onclick=""/>
+                    <form action ="mainview.php" method="post"><p style = "font-family: monospace;">'.$likes.'</p>
+                        <input type ="submit" name = "like" id ="like" style = "background- " > 
                         <input type = "hidden" name = "imgid" value='.$arr_id[$counter-1].'>
                         <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
                     </form>
@@ -62,18 +65,23 @@
             ?>
             </div>
             <script>
-            function show(theid){
-                
-               var show = document.getElementById('com_show'+theid);
+             function like()
+             {
+                alert('here');
+                // document.getElementById('like').submit();
+             }
+                function show(theid)
+                {    
+                var show = document.getElementById('com_show'+theid);
                 if (show.style.display === 'none')
-        {
-          show.style.display = 'block';
-        }
-         else
-    {
-    show.style.display = 'none';
-    }
-}
+               {
+               show.style.display = 'block';
+             }
+             else
+                 {
+                     show.style.display = 'none';
+                 }
+             }
             </script>
 </div>
 <a href="http://localhost:8080/Camagru/view.php"><img src="camera1.jpg"  width = "100" height = "100" id="camera"/></a> 
@@ -91,7 +99,7 @@ require_once ("getfunc.php");
 // header('Location: http://localhost:8080/Camagru/mainview.php?submit');
     if(isset($_POST['like']))
     {
-        $email =$_SESSION['email'];
+        $email = $_SESSION['email'];
         add_like($id = get_id($email),$uid = $_POST['imgid']);
         header('Location:  http://localhost:8080/Camagru/mainview.php?like&id='.$id."&uid=".$uid);
     }
