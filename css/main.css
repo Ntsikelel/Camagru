@@ -121,9 +121,9 @@ body
     grid-gap: 5px;
     /* grid-template-columns: 3fr 1fr; */
     /* background-color: black; */
-    background-image: url('../logback.png');
+    /* background-image: url('../logback.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     position: relative;
 }
 #cam_img
