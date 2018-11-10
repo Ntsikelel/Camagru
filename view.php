@@ -12,7 +12,7 @@
 <body>
     <div id="cont">
 <div id = "header">
-     <a href = "http://localhost:8080/Camagru/index.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
+     <a href = "http://localhost:8080/Camagru/mainview.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
     </div>
     <div id ="cam">
     <video id= "vid" width="600" height = "600" style= "background : black"></video> 

@@ -74,10 +74,33 @@ body
 }
 #nav
 {
-    /* display: inline-block;
-    left:90%;
-    position: relative; */
-    
+    padding: 5px;
+    top: 10px;
+    position: relative;
+    text-align: center;
+}
+#nav:hover
+{
+    padding-top: 10px;
+    top: 10px;
+    position: relative;
+    background: white;
+    text-align: center;
+}
+#nav_:hover
+{
+    padding-top: 10px;
+    top: 10px;
+    position: relative;
+    background: white;
+    text-align: center;
+}
+#nav_
+{
+    padding: 5px;
+    top: 10px;
+    position: relative;
+    text-align: center;
 }
 #logo
 {
@@ -99,13 +122,13 @@ body
     width: 100%;
     background-color: rgba(9, 182, 144, 0.8);
     display: grid;
-    grid-template-columns: 90% 10%;
+    grid-template-columns: 3fr 10% 10%;
     /* top: 0%; */
     /* position: relative; */
 }
 #btn
 {
-    background: #fff;
+    /* background: rgba(9, 182, 144, 0.3); */
     color: #333;
     text-decoration: none;
     margin: 5px;

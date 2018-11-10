@@ -11,13 +11,16 @@
 
 </head>
 <body>
-    <!-- <a href="http://localhost:8080/Camagru/index.php"><img src="camera1.jpg"  width = "100" height = "100" id="camera"/></a>  -->
+    <!-- <a href="http://localhost:8080/Camagru/mainview.php"><img src="camera1.jpg"  width = "100" height = "100" id="camera"/></a>  -->
 <div id = "header">
-        <a href = "http://localhost:8080/Camagru/main.php">  <img src = "camagrulogo.png" width = "100" height = "100" id = "logo"></a>
+        <a href = "http://localhost:8080/Camagru/mainview.php">  <img src = "camagrulogo.png" width = "100" height = "100" id = "logo"></a>
         <!-- <p style="background:white"> Hello <?php //session_start(); echo $_SESSION['email']?></p>   -->
         <div id="nav">   
-            <a href="editprofile.php"id = "btn">Edit Profile</a>   
-            <a href="logout.php" style="background:white;">logout</a>  
+            <a href="editprofile.php" id = "btn">Edit Profile</a>   
+      
+        </div>
+        <div id="nav_">  
+            <a href="logout.php" id = "btn" >logout</a>  
         </div>
 </div>
 <div id= "cont">
@@ -34,7 +37,7 @@
         </div>
     </div>
     <div id = "images" style= "overflow-x:scroll">
-    <?php html_insert()?>
+    <?php require_once ("getfunc.php"); html_insert()?>
             </div>
             <script>
             //  function like()
@@ -78,7 +81,7 @@
 </body>
 </html>
 <?php
-// session_start();
+ // session_start();
 require_once ("add.php");
 require_once ("getfunc.php");
 //echo "\n\n\n\n\n hello";
@@ -86,6 +89,10 @@ require_once ("getfunc.php");
 //  {
 // header('Location: http://localhost:8080/Camagru/mainview.php?submit');
 //header('Content-Type: text/html');
+if(isset($_SESSION['email']))
+{
+    header('Location: index.php');
+}
     if(isset($_POST['like']))
     {
         $email = $_SESSION['email'];
@@ -97,35 +104,4 @@ require_once ("getfunc.php");
         add_comment($_POST['com'],$_SESSION['email'],$_POST['imgid']);
         //  header('Location:  http://localhost:8080/Camagru/mainview.php?comment');
     }
-    function html_insert()
-    {
-        require_once ("getfunc.php"); 
-            session_start();
-            $pic = get_pic_num(); 
-            $arr = get_pictures();
-            $arr_id = get_pic_id();
-            $counter= 1;
-            $likes = 0;
-            while($pic-- > 0){
-                $com = show_com($arr_id[$counter]);
-                $likes = get_pic_like($arr_id[$counter]);
-                echo '<div id = "image">
-                <img src="'.$arr[$counter].'" width="400" height="400"/>
-                <div id="like_com">
-                <form action ="mainview.php" method="post">
-                <p style = "float:left; font-family: monospace;background:red; width:17px; color: white; border-radius:50%; margin-left :20px; text-align:center;">'.$likes.'</p>
-                <input type ="submit" name = "like" id ="like" value ="like" style = "margin-top: 10px;">
-                <input type = "hidden" name = "imgid" value='.$arr_id[$counter].'>
-                <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
-                </form>
-                <form action ="mainview.php" method="post">
-                <input type = "text" name = "com" placeholder="Comment" required><input type = "hidden" name = "imgid" value='.$arr_id[$counter].'>
-                <input type ="submit" name = "comment"  value = "comment"id = "comment" style = "margin-top: 10px;"> <img src = "" alt="" width="50" height="50" onclick=""/>
-                <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
-                </form>
-                </div>
-                <img src= "show_com.png" width= "70" height="30"onclick= "show('.$arr_id[$counter].')"style = "background: white; margin-left: 40%;">
-                <div style ="display: none; background:white;" id = "com_show'.$arr_id[$counter].'">'.$com.'
-                </div></div>';
-                $counter++;}
-              }?>
+?>

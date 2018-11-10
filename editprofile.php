@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id = "header">
-     <a href = "http://localhost:8080/Camagru/index.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
+     <a href = "http://localhost:8080/Camagru/mainview.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
     </div>
 <div id = "signup">
         <form action= "editprofile.php" method = "post">
