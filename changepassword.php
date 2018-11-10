@@ -76,6 +76,7 @@ if(isset($_POST['submit']))
             set_pass($passwd, $email);
             $pdo->exec($query);
             header('Location: http://localhost:8080/Camagru/login.php');
+            exit();
         }
     }
 }

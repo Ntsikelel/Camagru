@@ -27,10 +27,18 @@
         </tr>
     </table>
     <div>
-    <img src = "camera1.jpg" onclick= "open_camera()" id = "open_cam" width="60" height = "60">
-    <img src = "camera1.jpg" id = "cap" width="60" height = "60">
+    <table>
+               <tr>
+                   <td><p style ="font-family: monospace;margin-left:100px; color:rgba(9, 182, 144, 0.8); font-size:150%">Open Camera</p></td>
+               <td><p style ="font-family: monospace;margin-left:100px; color:rgba(9, 182, 144, 0.8);font-size:150%">Take a Picture</p></td>
+            </tr>
+            <tr>
+            <td><img src = "camera2.png"  style ="margin-left:100px;"onclick= "open_camera()" id = "open_cam" width="100" height = "100"></td>
+            <td><img src = "camera2.png" style ="margin-left:100px;"id = "cap" width="100" height = "100"></td>
+    </tr>
+</table>
     <div>
-    <canvas id = "canv" width="700" height = "600" style= "background: transparent left:0; top:70px; position:absolute;"></canvas>
+    <canvas id = "canv" width="500" height = "500" style= "background: transparent left:0; top:70px; position:absolute; width:500px;"></canvas>
     <form  action="view.php" method="post" id="image_data" onsubmit= "alert('Submit')">
     <!-- <input type = "text" id = "image" value="her"/> -->
     <input type = "submit" name="submit" id = "sub"/>
@@ -54,7 +62,7 @@ session_start();
       //  header('Location: http://localhost:8080/Camagru/signup.php');
       //  print_r($_POST);
      // header('Content-Type: image/png');
-     $rand = rand();
+         $rand = rand();
         add_img("img_s/image".$_SESSION['email'].$rand.".png",$_SESSION['email']);
         // if (mkdir("img_s",0777) === false)
         // {
@@ -63,7 +71,7 @@ session_start();
         // else
         // {
            // echo getcwd()."/img_s/";
-        file_put_contents("img_s/image".$_SESSION['email'].$rand.".png",base64_decode(strchr($_POST['image'],",")));
+         file_put_contents("img_s/image".$_SESSION['email'].$rand.".png",base64_decode(strchr($_POST['image'],",")));
         header('Location: http://localhost:8080/Camagru/mainview.php?Saved');
     //  }
     }

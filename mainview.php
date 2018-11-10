@@ -55,11 +55,17 @@
                 }
             }
             </script>
-            <div class="load"><a href="http://localhost:8080/Camagru/view.php"><img src="camera1.jpg"  width = "100" height = "100" id="camera"/></a> 
-<a href="http://localhost:8080/Camagru/upload.php"><img src="upload.png"  width = "100" height = "100" id="camera"/></a> </div>
-            
-</div>
-
+            <div class="load">
+                <table>
+               <tr><td><p style ="font-family: monospace;margin-left:100px; color:rgba(9, 182, 144, 0.8);">Take a Picture</p></td>
+               <td><p style ="font-family: monospace;margin-left:100px; color:rgba(9, 182, 144, 0.8);">Upload a Picture</p></td>
+            </tr>
+            <tr><td> <a href="http://localhost:8080/Camagru/view.php"><img src="camera2.png"  style= "margin-left:100px;"width = "100" height = "100" id="camera"/></a> </td>
+            <td><a href="http://localhost:8080/Camagru/upload.php"><img src="upload.png"  style= "margin-left:100px;" width = "100" height = "100" id="camera_1"/></a></td>
+        </tr>
+        </table>        
+                </div>        
+        </div>
 </div>
 <div class="footer" style="    background:  rgba(9, 182, 144, 0.8);
     position: fixed;
@@ -84,7 +90,7 @@ require_once ("getfunc.php");
     {
         $email = $_SESSION['email'];
         add_like($id = get_id($email),$uid = $_POST['imgid']);
-        header('Location:  http://localhost:8080/Camagru/mainview.php?like&id='.$id."&uid=".$uid);
+        // header('Location:  http://localhost:8080/Camagru/mainview.php?like&id='.$id."&uid=".$uid);
     }
     if(isset($_POST['comment']))
     {
