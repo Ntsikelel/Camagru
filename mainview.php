@@ -34,46 +34,7 @@
         </div>
     </div>
     <div id = "images" style= "overflow-x:scroll">
-    
-            <?php require_once ("getfunc.php"); 
-            //session_start();
-            $pic = get_pic_num(); 
-            $arr = get_pictures();
-            $arr_id = get_pic_id();
-            $counter= 1;
-            $likes = 0;
-           
-        // $com_c = get_com();
-        if ($pic > 1)
-        {
-          //  $counter= 2;
-        }
-        else
-        {
-           // $counter = 1;
-        }
-            while($pic-- > 0){
-                $com = show_com($arr_id[$counter]);
-                 $likes = get_pic_like($arr_id[$counter]);
-                echo ' 
-                <div id = "image">
-                    <img src="'.$arr[$counter].'" width="400" height="400"/>
-                    <div id="like_com">
-                    <form action ="mainview.php" method="post"><p style = "float:left; font-family: monospace;background:red; width:17px; color: white; border-radius:50%; margin-left :20px; text-align:center;">'.$likes.'</p>
-                        <input type ="submit" name = "like" id ="like" value ="like"style = "margin-top: 10px;background-image: url("likes.png");" > 
-                        <input type = "hidden" name = "imgid" value='.$arr_id[$counter].'>
-                        <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
-                    </form>
-                    <form action ="mainview.php" method="post">
-                        <input type = "text" name = "com" placeholder="Comment" required>
-                        <input type = "hidden" name = "imgid" value='.$arr_id[$counter].'>
-                <input type ="submit" name = "comment"  value = "comment"id = "comment" style = "margin-top: 10px;"> <img src = "comment.pngp" alt="" width="50" height="50" onclick=""/>
-                <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
-                </form>
-                </div><img src= "show_com.png" width= "70" height="30"onclick= "show('.$arr_id[$counter].')" style = "background : white; margin-left: 40%"><div style = "display:none; background:white;"id = "com_show'.$arr_id[$counter ].'">'.$com.'</div></div>';
-                $counter++;
-                //$pic--;
-            }?>
+    <?php html_insert()?>
             </div>
             <script>
             //  function like()
@@ -85,14 +46,14 @@
                 {    
                 var show = document.getElementById('com_show'+theid);
                 if (show.style.display === 'none')
-               {
-               show.style.display = 'block';
-             }
-             else
-                 {
-                     show.style.display = 'none';
-                 }
-             }
+            {
+            show.style.display = 'block';
+            }
+            else
+                {
+                    show.style.display = 'none';
+                }
+            }
             </script>
             <div class="load"><a href="http://localhost:8080/Camagru/view.php"><img src="camera1.jpg"  width = "100" height = "100" id="camera"/></a> 
 <a href="http://localhost:8080/Camagru/upload.php"><img src="upload.png"  width = "100" height = "100" id="camera"/></a> </div>
@@ -111,14 +72,14 @@
 </body>
 </html>
 <?php
-session_start();
+// session_start();
 require_once ("add.php");
 require_once ("getfunc.php");
 //echo "\n\n\n\n\n hello";
 //  if(isset($_POST['submit']))
 //  {
 // header('Location: http://localhost:8080/Camagru/mainview.php?submit');
-header('Content-type: text/raw');
+//header('Content-Type: text/html');
     if(isset($_POST['like']))
     {
         $email = $_SESSION['email'];
@@ -128,11 +89,37 @@ header('Content-type: text/raw');
     if(isset($_POST['comment']))
     {
         add_comment($_POST['com'],$_SESSION['email'],$_POST['imgid']);
-        header('Location:  http://localhost:8080/Camagru/mainview.php?comment');
+        //  header('Location:  http://localhost:8080/Camagru/mainview.php?comment');
     }
-    
-   
-    //get_pictures();
-
-// }
-?>
+    function html_insert()
+    {
+        require_once ("getfunc.php"); 
+            session_start();
+            $pic = get_pic_num(); 
+            $arr = get_pictures();
+            $arr_id = get_pic_id();
+            $counter= 1;
+            $likes = 0;
+            while($pic-- > 0){
+                $com = show_com($arr_id[$counter]);
+                $likes = get_pic_like($arr_id[$counter]);
+                echo '<div id = "image">
+                <img src="'.$arr[$counter].'" width="400" height="400"/>
+                <div id="like_com">
+                <form action ="mainview.php" method="post">
+                <p style = "float:left; font-family: monospace;background:red; width:17px; color: white; border-radius:50%; margin-left :20px; text-align:center;">'.$likes.'</p>
+                <input type ="submit" name = "like" id ="like" value ="like" style = "margin-top: 10px;">
+                <input type = "hidden" name = "imgid" value='.$arr_id[$counter].'>
+                <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
+                </form>
+                <form action ="mainview.php" method="post">
+                <input type = "text" name = "com" placeholder="Comment" required><input type = "hidden" name = "imgid" value='.$arr_id[$counter].'>
+                <input type ="submit" name = "comment"  value = "comment"id = "comment" style = "margin-top: 10px;"> <img src = "" alt="" width="50" height="50" onclick=""/>
+                <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
+                </form>
+                </div>
+                <img src= "show_com.png" width= "70" height="30"onclick= "show('.$arr_id[$counter].')"style = "background: white; margin-left: 40%;">
+                <div style ="display: none; background:white;" id = "com_show'.$arr_id[$counter].'">'.$com.'
+                </div></div>';
+                $counter++;}
+              }?>
