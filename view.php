@@ -26,9 +26,11 @@
             <td id= "smp_img_block"><img src="smp5.png" width="100" height = "100" onclick="view_img(5)" id = "smp5"></td>
         </tr>
     </table>
+    <div>
     <img src = "camera1.jpg" onclick= "open_camera()" id = "open_cam" width="60" height = "60">
     <img src = "camera1.jpg" id = "cap" width="60" height = "60">
-    <canvas id = "canv" width="500" height = "500" style= "background: transparent"></canvas>
+    <div>
+    <canvas id = "canv" width="700" height = "600" style= "background: transparent left:0; top:70px; position:absolute;"></canvas>
     <form  action="view.php" method="post" id="image_data" onsubmit= "alert('Submit')">
     <!-- <input type = "text" id = "image" value="her"/> -->
     <input type = "submit" name="submit" id = "sub"/>

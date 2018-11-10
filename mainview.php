@@ -17,18 +17,55 @@
         <!-- <p style="background:white"> Hello <?php //session_start(); echo $_SESSION['email']?></p>   -->
         <div id="nav">   
             <a href="editprofile.php"id = "btn">Edit Profile</a>   
-            <a href="logout.php" >logout</a>  
+            <a href="logout.php" style="background:white;">logout</a>  
         </div>
 </div>
 <div id= "cont">
 <div id ="bod_con">
     <div id="cam_img">
-        <img src="mirrorless-camera-2x1-fullres-2024-1024x512.jpg" id = "cam_img_id" height="400" width= "1000"style="padding:40px; background:rgba(255,0,0,0.8);"/>
-        <!-- <img src="backgr3.jpg" id = "cam_img_id" height="400" style="padding:10px;"/> -->
-        <div id = "sidebar">
+        <div class="content" >
+            <!-- <h1 style= "color:white; top:50% ;left:50%; postion:absolute;">Name </h1> -->
+            <img src="Welcome_to_Camagru.png" id = "cam_img_id" height="400" style="padding:40px; background:rgba(255,255,255,0.1);"/>
+        </div>
+        
+        <!-- <img src="backgr.jpg" id = "cam_img_id" height="400" style="padding:10px;"/> -->
+        <div id = "sidebar" style= "overflow-x:scroll; height:420px; padding:40px;margin-left: 0px; ">
+        <!-- <p style= "color:white;">11111111111111111111</p>
+        <p>11111111111111111111</p>
+        <p style= "color:white;">11111111111111111111</p>
+        <p>1</p>
+        <p style= "color:white;">11111111111111111111</p>
+        <p>1</p>
+        <p style= "color:white;">11111111111111111111</p>
+        <p>1</p>
+        <p style= "color:white;">11111111111111111111</p>
+        <p>1</p>
+        <p style= "color:white;">11111111111111111111</p>
+        <p>1</p>
+        <p style= "color:white;">11111111111111111111</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p><p>1</p> -->
+
         </div>
     </div>
-    <div id = "images">
+    <div id = "images" style= "overflow-x:scroll">
     
             <?php 
             require_once ("getfunc.php"); 
@@ -40,6 +77,14 @@
             $likes = 0;
            
         // $com_c = get_com();
+        if ($pic > 1)
+        {
+          //  $counter= 2;
+        }
+        else
+        {
+           // $counter = 1;
+        }
             while($pic-- > 0){
                 $com = show_com($arr_id[$counter-1]);
                  $likes = get_pic_like($arr_id[$counter-1]);
@@ -83,9 +128,19 @@
                  }
              }
             </script>
+            <div class="load"><a href="http://localhost:8080/Camagru/view.php"><img src="camera1.jpg"  width = "100" height = "100" id="camera"/></a> 
+<a href="http://localhost:8080/Camagru/upload.php"><img src="upload.png"  width = "100" height = "100" id="camera"/></a> </div>
+            
 </div>
-<a href="http://localhost:8080/Camagru/view.php"><img src="camera1.jpg"  width = "100" height = "100" id="camera"/></a> 
-<a href="http://localhost:8080/Camagru/upload.php"><img src="upload.png"  width = "100" height = "100" id="camera"/></a> 
+
+</div>
+<div class="footer" style="    background:  rgba(9, 182, 144, 0.8);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;">
+    <p style="float:right ;display:inline; color:white"> &copy nmetseem </p>
 </div>
 </body>
 </html>

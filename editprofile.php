@@ -13,8 +13,8 @@
      <a href = "http://localhost:8080/Camagru/index.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
     </div>
 <div id = "signup">
-<img src = "user.svg" width = "300" height = "300">
         <form action= "editprofile.php" method = "post">
+             <img src = "user.png" width = "300" height = "300">
             <p id = "errmsg">
             <?php  
                 foreach($_GET as $key => $val)
@@ -30,9 +30,21 @@
             <input  type= "text" name="displayname" placeholder="Display Name" />
             <br/>Recieve Email <input type= "checkbox" name = "Recieve Email" checked>
             <input  type= "submit" name="submit" value = "Edit Profile"/>
-          
         </form>
+        <div class="div_pic" style = "background-image: url('logback.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; width:500px">
+        </div>
     </div>
+    <div class="footer" style="    background:  rgba(9, 182, 144, 0.8);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;">
+    <p style="float:right ;display:inline; color:white"> &copy nmetseem </p>
+</div>
 </body>
 </html>
 <?php

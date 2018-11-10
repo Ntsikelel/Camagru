@@ -250,6 +250,7 @@
                 $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $stat = $pdo->query("SELECT * FROM pictures");
+                $arr[] = array();
                 while ($name = $stat->fetch())
                 {
                     $arr[] = ($name['id']);
@@ -293,7 +294,7 @@
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stat = $pdo->query("SELECT * FROM comments WHERE id=".$id);
+        $stat = $pdo->query("SELECT * FROM comments WHERE id=".intval($id));
         $arr = "";   
         while ($name = $stat->fetch())
         {
@@ -305,7 +306,7 @@
   
     catch (PDOException $e)
     {
-        echo $e.getMessege();
+      //  echo $e.getMessege();
     }
 
     }
@@ -318,7 +319,7 @@
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stat = $pdo->query("SELECT * FROM pictures WHERE id=".$id);
+        $stat = $pdo->query("SELECT * FROM pictures WHERE id=".intval($id));
        
         while ($name = $stat->fetch())
         {
@@ -329,7 +330,7 @@
   
     catch (PDOException $e)
     {
-        echo $e.getMessege();
+       // echo $e.getMessege();
     }
 
     }

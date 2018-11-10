@@ -13,10 +13,24 @@ body
     margin: 0;
     padding: 0;
     display: grid;
+    height: 100%;
     /* background: cornsilk; */
-    grid-template-rows:  3.5rem 1fr 1fr;
+    grid-template-rows:  3.5rem 1fr 4rem;
     /* grid-gap: 20px; */
     
+}
+
+#sidebar
+{
+     background-image: url('../sidebar.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+#content
+{
+   
+    color: white;
 }
 #logo
 {
@@ -25,9 +39,15 @@ body
 #images
 {
     display: grid;
-    grid-gap: 20px;
+    /* grid-gap: 20px; */
+    /* float: left; */
+    height: 500px;
+    /* display: inline; */
     top: 60%;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    width:auto;
+    padding: 20px;
+    margin-left: 20px;
     /* position: absolute; */
 }
 #like_com
@@ -41,10 +61,12 @@ body
 {
     /* height: 50px; */
     width: 100%;
-    display: grid;
+    display: inline;
+    /* display: grid; */
     /* background: #ccc; */
     /* top: 50%; */
     /* border: 1px solid gray; */
+    float: left;
     box-shadow: 2px 2px #888888;
     position: relative;
     /* border: 6px solid #333; */
@@ -106,7 +128,7 @@ body
 #cam_img
 {
     display: grid;
-    /* grid-template-columns: 3fr 1fr; */
+     grid-template-columns: 2fr 1fr; 
 }
 #cam_img_id
 {
@@ -120,6 +142,12 @@ body
     {
     display: grid;
     grid-template-rows: 4rem 1fr;    
+    }
+    #cam_img
+    {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     }
     #header
     {
@@ -137,6 +165,12 @@ body
     {
     display: grid;
     grid-template-columns: 70% 30%; 
+    }
+    #cam_img
+    {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     }
     #images
     { 

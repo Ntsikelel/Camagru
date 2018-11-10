@@ -1,10 +1,12 @@
 body
 {
     box-sizing: border-box;
-    background-image: url('../backgr.jpg');
+    background-image: url('../logback2.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    display: grid;
+    /* height: 100%; */
 }
 #errmsg
 {
@@ -13,22 +15,43 @@ body
     color:#ccc;
     background: #eee;
 }
+#usr_img
+{
+    /* position: absolute; */
+    /* top: -50px; */
+}
 #signup
 {
     width: 400px;
-    height: 400px;
+    height: 550px;
+    /* min-height: calc(100vh - 70px); */
     padding: 0;
     margin: 0;
     border: none;
-    left: 50%;
+    left: 30%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-40%);
     position: absolute;
     text-align: center;
-    background-color: #ccc;
-  
-
-
+    /* background-color:  rgba(9, 182, 144, 1); */
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: white;
+    /* background-image: url('../logback.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  */
+    /* margin-bottom: -50px; */
+}
+#div_pic
+{
+    /* margin-left: 40px; */
+    background-image: url('logback.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 500px;
 }
 #logo
 {
@@ -44,6 +67,8 @@ body
     background-color: rgba(9, 182, 144, 0.8);
     top: 0%;
     position: absolute;
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
 
 }
 #signup input
@@ -51,8 +76,11 @@ body
     outline: none;
     border: none;
     margin: 10px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid black;
     background: transparent;
+    height: 20px;
+    color: black;
+    height: auto;
 
 }
 #signup input:focus
@@ -60,31 +88,53 @@ body
     outline: none;
     border: none;
     margin: 10px;
-    width: 100%;
-    border-bottom: 1px solid gray;
+    width: 80%;
+    color: black;
+    border-bottom: 1px solid black;
     background: transparent;
     font-family: monospace;
 
 }
 #signup input[type= 'submit']
 {
-    width: 100%;
+    width: 70%;
     margin: 20px;
-    border-bottom: 1px solid gray;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    /* background: rgba(214, 35, 110, 0.459); */
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
     font-family: monospace;
     
 }
 #signup input[type= 'submit']:hover
 {
-    width: 100%;
+    width: 80%;
     margin: 20px;
-    background: gray;
+    background:#333;
     border: 1px solid gray;
     color: wheat;
+}
+#div_pic:hover
+{
+    background-image: url('logback2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+    width:500px;
 }
 a {
     text-decoration: none;
     font-family: monospace;
+    color: black;
+}
+#footer
+{
+ height: 100px;
+ /* margin-top: -50px; */
+ /* width: 100%;
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ overflow: hidden; */
+ background-color: rgba(9, 182, 144, 0.8);
 }

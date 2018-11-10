@@ -6,11 +6,11 @@ body
 {
     margin: 0;
     padding: 0;
-    background-image: url('../backgr3.jpg');
+    background-image: url('../logback.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-
+    height: 100%;
 }
 #cont
 {
@@ -20,16 +20,16 @@ body
 {
     top : 2%;
     left: 1%;
-    position: absolute;
+    position: fixed;
    
 }
 #header
 {
     height: 50px;
-    width: 100px;
+    width: 100%;
     background-color: rgba(9, 182, 144, 0.8);
     top: 0%;
-    position: absolute;
+    position: fixed;
 }
 #btn
 {
@@ -42,9 +42,9 @@ body
 #cap
 {
     border-radius: 50%;
-    left: 20%;
+    /* left: 20%;
     top: 55%;
-    position: absolute;
+    position: absolute; */
 }
 #vid
 {

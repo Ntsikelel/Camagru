@@ -14,7 +14,7 @@
     </div>
     <div id = "signup">
         <form action= "resetpass.php" method = "post">
-        <img src = "user.svg" width = "300" height = "300"/>
+        <img src = "user.png" width = "300" height = "300"/>
         <p id = "errmsg">
             <?php  
                 foreach($_GET as $key => $val)
@@ -29,7 +29,21 @@
             <a href="http://localhost:8080/Camagru/signup.php">Need to sign up ?</a><br/>
             <a href="http://localhost:8080/Camagru/login.php">Login ?</a>
         </form>
+        <div class="div_pic" style = "background-image: url('logback.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; width:500px">
+        <!-- <img src = "user.png" width = "300" height = "300"> -->
+        </div>
     </div>
+    <div class="footer" style="    background:  rgba(9, 182, 144, 0.8);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;">
+    <p style="float:right ;display:inline; color:white"> &copy nmetseem </p>
+</div>
 </body>
 </html>
 <?PHP
