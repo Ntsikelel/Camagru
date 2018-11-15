@@ -49,7 +49,8 @@
 </html>
 
 <?php
-session_start();
+if (!isset($_SESSION))
+{session_start();}
    require_once("add.php");
    if(isset($_POST['submit']))
    {

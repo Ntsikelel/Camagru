@@ -81,9 +81,11 @@
 </body>
 </html>
 <?php
- // session_start();
+if (!isset($_SESSION))
+{session_start();}
 require_once ("add.php");
 require_once ("getfunc.php");
+require_once ("delete.php");
 //echo "\n\n\n\n\n hello";
 //  if(isset($_POST['submit']))
 //  {
@@ -104,4 +106,11 @@ if(isset($_SESSION['email']))
         add_comment($_POST['com'],$_SESSION['email'],$_POST['imgid']);
         //  header('Location:  http://localhost:8080/Camagru/mainview.php?comment');
     }
+    if(isset($_POST['deletePic']))
+    {
+        $email = $_SESSION['email'];
+        delete_img(get_id($email),$_POST['imgid']);
+        //   header('Location:  http://localhost:8080/Camagru/mainview.php?delete');
+    }
+
 ?>

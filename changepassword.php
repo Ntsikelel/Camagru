@@ -18,17 +18,18 @@
         <img src = "user.png" width = "300" height = "300">
             <p id = "errmsg">
             <?php  
-                foreach($_GET as $key => $val)
-                {
-                    echo "Error :".$val; 
-                }
+                // foreach($_GET as $key => $val)
+                // {
+                //     echo "Error :".$val; 
+                // }
+              
             ?>
             </p>
             <input  type= "password" name="passwd" placeholder="*******" required/>
             <br/>
             <input  type= "password" name="passwd_ver" placeholder="******" required/>
             <br/>
-            <input  type= "submit" name="submit" value = "Sign Up"/>
+            <input  type= "submit" name="submit" value = "Reset"/>
         </form>
     </div>
     <div class="footer" style="    background:  rgba(9, 182, 144, 0.8);
@@ -43,8 +44,11 @@
 </html>
 <?php
     require_once ("setfunc.php");
-
-
+    
+//   $email = $_GET['email'];
+//                 $tok = $_GET['tok'];
+ 
+  //echo $email.$tok;
 $DB_DSN = "mysql:host=localhost";
 $DB_USER = "root";
 $DB_PASSWORD = "123456";
@@ -55,24 +59,25 @@ if(isset($_POST['submit']))
         $val = 'whirlpool';
         $passwd = hash($val, $_POST['passwd'],false);
         $passwd_ver = hash($val, $_POST['passwd_ver'],false);
-        if($passwd === $passwd_ver)
-        {
-            $email = $_GET['email'];
-            $tok = $_GET['tok'];
-            echo $tok;
-            exit();
+     
+        if($passwd == $passwd_ver)
+        { 
     try
     {
     $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stat = $pdo->query("SELECT * FROM tok");
+    $stat = $pdo->query("SELECT * FROM tok"); 
+       //    header('Location: http://localhost:8080/Camagru/login.php?'.$tok);
+      //  exit(); 
     while ($name = $stat->fetch())
-    {
-        if($name['token'] === $tok)
+    { 
+      //  echo $tok;
+        //exit();
+        if($name['email'] === $_GET['email'] && $name['is_act'] == 1)
        { 
-            $tok_t = $name['token'];
-            $query = "DELETE FROM tok WHERE token ="."'$tok_t'";
-            set_is_act(1,$email);
+           // $tok_t = $name['token'];
+           // $query = "DELETE FROM tok WHERE token ="."'$tok_t'";
+          //  set_is_act(1,$email);
             set_pass($passwd, $email);
             $pdo->exec($query);
             header('Location: http://localhost:8080/Camagru/login.php');

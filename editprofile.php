@@ -28,7 +28,7 @@
             <input  type= "email" name="email" placeholder="example@domain.com" require/>
             <br/>
             <input  type= "text" name="displayname" placeholder="Display Name" />
-            <br/>Recieve Email <input type= "checkbox" name = "Recieve Email" checked>
+            <br/>Recieve Email <input type= "checkbox" name = "RecieveEmail" checked>
             <input  type= "submit" name="submit" value = "Edit Profile"/>
         </form>
         <div class="div_pic" style = "background-image: url('logback.png');
@@ -49,11 +49,17 @@
 </html>
 <?php
     require_once  ("setfunc.php");
+    if (!isset($_SESSION))
+ {session_start();}
     if (isset($_POST['displayname'])   && isset($_POST['email']) )
     {
         set_displayname($_POST['displayname'],$_POST['email']);
     }
     if (isset($_POST['displayname']) && isset($_POST['email']))
+    {
+        set_username($_POST['username'],$_POST['email']);
+    }
+    if (isset($_POST['displayname']) && isset($_POST['RecieveEmail']))
     {
         set_username($_POST['username'],$_POST['email']);
     }

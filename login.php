@@ -17,6 +17,7 @@
         <img src = "user.png" width = "300" height = "300" id = "usr_img"/>
         <p id = "errmsg">
             <?php  
+          //  var_dump($_SESSION);
                 foreach($_GET as $key => $val)
                 {
                     echo "Error :".$val; 
@@ -49,7 +50,9 @@
 </body>
 </html>
 <?PHP
-session_start();
+ if (!isset($_SESSION))
+ {session_start();}
+
 if (isset($_POST['submit']))
 {
     require_once  ("config/database.php");
@@ -75,10 +78,16 @@ if (isset($_POST['submit']))
         {
            print_r($name);
          
-            if($name['email'] === $username && $name['passwd'] === $passwd)
+            if($name['email'] === $username && $name['passwd'] === $passwd && $name['is_act'] == 1)
             {
                  $_SESSION['email'] = $name['email'];
                  header('Location: http://localhost:8080/Camagru/index.php');
+                 exit();
+            }  
+            if($name['email'] === $username && $name['passwd'] === $passwd && $name['is_act'] == 0)
+            {
+               
+                 header('Location: http://localhost:8080/Camagru/login.php?error=ActivateAccount');
                  exit();
             }  
         }

@@ -240,6 +240,29 @@
             echo $e.getMessege();
         }
     }
+        function get_pic_uid()
+        {
+            $DB_DSN = "mysql:host=localhost";
+            $DB_USER = "root";
+            $DB_PASSWORD = "123456";
+            try
+            {
+                $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stat = $pdo->query("SELECT * FROM pictures");
+                $arr[] = array();
+                while ($name = $stat->fetch())
+                {
+                    $arr[] = ($name['u_id']);
+                }
+                return ($arr);
+            }
+            
+            catch (PDOException $e)
+            {
+                echo $e.getMessege();
+            }
+        }
         function get_pic_id()
         {
             $DB_DSN = "mysql:host=localhost";
@@ -341,9 +364,17 @@
             $pic = get_pic_num(); 
             $arr = get_pictures();
             $arr_id = get_pic_id();
+            $arr_uid = get_pic_uid();
             $counter= 1;
             $likes = 0;
+            
             while($pic-- > 0){
+                $delete = "";
+                if(get_id($_SESSION['email']) == $arr_uid[$counter])
+                {
+                    $delete = '<form action ="mainview.php" method="post"><input type="submit" name = "deletePic"value= "delete Picture">
+                    <input type = "hidden" name = "imgid" value='.$arr_id[$counter].'></form>';
+                }
                 $com = show_com($arr_id[$counter]);
                 $likes = get_pic_like($arr_id[$counter]);
                 echo '<div id = "image">
@@ -360,7 +391,7 @@
                 <input type ="submit" name = "comment"  value = "comment"id = "comment" style = "margin-top: 10px;width= "100%;"> <img src = "" alt="" width="50" height="50" onclick=""/>
                 <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
                 </form>
-                </div>
+                </div>'.$delete.'
                 <img src= "show_com.png" width= "70" height="30"onclick= "show('.$arr_id[$counter].')"style = "background: white; margin-left: 40%;">
                 <div style ="display: none; background:white;" id = "com_show'.$arr_id[$counter].'">'.$com.'
                 </div></div>';

@@ -59,6 +59,7 @@
     require_once ("mail.php");
     require_once ("setfunc.php");
     require_once ("getfunc.php");
+    require_once ("verfunc.php");
      //  echo "here";
        $DB_DSN = "mysql:host=localhost";
        $DB_USER = "root";
@@ -76,7 +77,12 @@ if (isset($_POST['submit']))
     {
         //echo "here1";
     $username = $_POST['username'];
-    $val = 'whirlpool';
+    $val = 'whirlpool'; 
+    if (($e = ver_pass($_POST['passwd'])) !== '1')
+    {
+        header('Location: http://localhost:8080/Camagru/signup.php?error='.$e); 
+         exit();
+    }
     $passwd = hash($val, $_POST['passwd'],false);
     $email = $_POST['email'];
     if (!isset($passwd) || !isset($email) || !isset($username))
@@ -91,6 +97,7 @@ if (isset($_POST['submit']))
     {
         header('Location: http://localhost:8080/Camagru/signup.php?error=username');
     }
+   
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='."camagru;", $DB_USER, $DB_PASSWORD);
