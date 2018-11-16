@@ -14,7 +14,8 @@
     <!-- <a href="http://localhost:8080/Camagru/mainview.php"><img src="camera1.jpg"  width = "100" height = "100" id="camera"/></a>  -->
 <div id = "header">
         <a href = "http://localhost:8080/Camagru/mainview.php">  <img src = "camagrulogo.png" width = "100" height = "100" id = "logo"></a>
-        <!-- <p style="background:white"> Hello <?php //session_start(); echo $_SESSION['email']?></p>   -->
+        <p style="font-family:monospace;"> Hello <?php require_once ("getfunc.php"); if (!isset($_SESSION))
+                {session_start();}  echo get_displayname($_SESSION['email'])."_"?></p>  
         <div id="nav">   
             <a href="editprofile.php" id = "btn">Edit Profile</a>   
       
@@ -91,10 +92,10 @@ require_once ("delete.php");
 //  {
 // header('Location: http://localhost:8080/Camagru/mainview.php?submit');
 //header('Content-Type: text/html');
-if(isset($_SESSION['email']))
-{
-    header('Location: index.php');
-}
+//if(isset($_SESSION['email']))
+//{//
+   // header('Location: index.php');
+//}
     if(isset($_POST['like']))
     {
         $email = $_SESSION['email'];

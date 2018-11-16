@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/signup.css" />
     <link rel= "shortcut icon" type = "image/ico" href="icon.ico"/>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body> 
     <div id = "header">
@@ -34,6 +35,7 @@
             <input  type= "password" name="passwd" placeholder="******" required/>
             <br/>
             <input  type= "submit" name="submit" value = "Sign Up"/><br/>
+            <div class="g-recaptcha" data-sitekey="6LcNCHsUAAAAAKG1dP_jN23ajc2AwEJH0aFvLFOP"></div>
             <a href="http://localhost:8080/Camagru/login.php">Do you already have an account ?</a><br/>
         </form>
         <div class="div_pic" style = "background-image: url('logback.png');
@@ -61,9 +63,7 @@
     require_once ("getfunc.php");
     require_once ("verfunc.php");
      //  echo "here";
-       $DB_DSN = "mysql:host=localhost";
-       $DB_USER = "root";
-       $DB_PASSWORD = "123456";
+     global $DB_DSN,$DB_USER,$DB_PASSWORD;
     //echo $DB_DSN.$DB_PASSWORD.$DB_USER;
  function gen_tok($email)
 {

@@ -1,10 +1,11 @@
     <?php
-        require_once  ("config/database.php");
-        $DB_DSN = "mysql:host=localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456";
+        require_once  ('config/database.php');
+        // $DB_DSN = "mysql:host=localhost";
+        // $DB_USER = "root";
+        // $DB_PASSWORD = "123456";
     function is_exist($email,$user)
     {
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -25,9 +26,7 @@
     }
     function get_id($email)
     {
-        $DB_DSN = "mysql:host=localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456";
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -48,9 +47,7 @@
     }
     function get_uid($email)
     {
-        $DB_DSN = "mysql:host=localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456";
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -71,6 +68,7 @@
     }
     function get_pass($pass, $email)
     {
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -91,6 +89,7 @@
     }
     function get_username($username, $email)
     {
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -112,6 +111,7 @@
     }
     function get_email($emailb,$emaila)
     {
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -132,12 +132,9 @@
     }
     function get_email_by_id($id)
     {
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
-            $DB_DSN = "mysql:host=localhost";
-            $DB_USER = "root";
-            $DB_PASSWORD = "123456";
-            
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stat = $pdo->query("SELECT * FROM users");
@@ -179,6 +176,7 @@
     }
     function get_is_pen($num, $email)
     {
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -197,10 +195,12 @@
             echo $e.getMessege();
         }
     }
-    function get_displayname($displayname, $email)
+    function get_displayname($email)
     {
+   
+         global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
-        {
+        { 
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stat = $pdo->query("SELECT * FROM users");
@@ -288,11 +288,9 @@
         }
     function get_pic_num()
     {
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
-            $DB_DSN = "mysql:host=localhost";
-            $DB_USER = "root";
-            $DB_PASSWORD = "123456";
             $count = 0;
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -310,9 +308,7 @@
     }
     function show_com($id)
     {
-        $DB_DSN = "mysql:host=localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456";
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -360,7 +356,8 @@
     function html_insert()
     {
        require_once ("getfunc.php"); 
-            session_start();
+       if (!isset($_SESSION))
+       {session_start();}
             $pic = get_pic_num(); 
             $arr = get_pictures();
             $arr_id = get_pic_id();
