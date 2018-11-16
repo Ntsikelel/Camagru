@@ -4,16 +4,14 @@ require_once ("getfunc.php");
 require_once ("mail.php");
 function add_img($data, $email)
 {
-        $DB_DSN = "mysql:host=localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456";   
+    global $DB_DSN,$DB_USER,$DB_PASSWORD; 
     try
     {
 
      $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     $query = "INSERT INTO pictures(id ,u_id, path, picture_name, likes, is_pen) VALUES (null,".get_id($email).",'$data','image.png',0,0)";
-         $pdo->exec($query);
+     $st = $pdo->prepare("INSERT INTO pictures(id ,u_id, path, picture_name, likes, is_pen) VALUES (null,:u_id,:path,'image.png',0,0)");
+     $st->execute(['u_id'=>get_id($email),'path,'=>$data]);
 
     }
 catch (PDOException $e)
@@ -25,9 +23,7 @@ catch (PDOException $e)
 function add_comment($mes, $email,$imgid)
 {
 
-    $DB_DSN = "mysql:host=localhost";
-    $DB_USER = "root";
-    $DB_PASSWORD = "123456";   
+    global $DB_DSN,$DB_USER,$DB_PASSWORD;  
 try
 {
 $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -38,10 +34,10 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    // if($name['email'] === )
   // { 
        
-        $query = "INSERT INTO comments(id,u_id, comment) VALUES (".$imgid.",".get_id($email).",'$mes')";
+    $st = $pdo->prepare("INSERT INTO comments(id,u_id, comment) VALUES (:id,:u_id,:comment)");
         comment_like_mail($email);
        // get_email_by_id(get_id($email));
-        $pdo->exec($query);
+       $st->execute(['id'=>$imgid,'u_id'=>get_id($email),'comment'=>$mes]);
        // comment_like_mail(get_email($email);
    // }
 // }
@@ -54,10 +50,7 @@ catch (PDOException $e)
 }
  
 function add_like($uid,$id)
-{
-    $DB_DSN = "mysql:host=localhost";
-    $DB_USER = "root";
-    $DB_PASSWORD = "123456";   
+{  global $DB_DSN,$DB_USER,$DB_PASSWORD; 
 try
 {
 $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -68,11 +61,11 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    // if($name['email'] === )
   // { 
        
-        $query = "UPDATE pictures SET likes= likes + 1 WHERE u_id=".$uid." AND id=".$id;
+    $st = $pdo->prepare("UPDATE pictures SET likes= likes + 1 WHERE u_id=:u_id AND id=:id");
         //header('Location: http://localhost:8080/Camagru/mainview.php?'.$query);
        // exit();
        comment_like_mail(get_email_by_id($uid));
-        $pdo->exec($query);
+       $st->execute(['u_id'=>$uid,'id'=>$id]);
    // }
 // }
 }

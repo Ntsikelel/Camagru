@@ -51,16 +51,16 @@
     require_once  ("setfunc.php");
     if (!isset($_SESSION))
  {session_start();}
-    if (isset($_POST['displayname'])   && isset($_POST['email']) )
+    if (isset($_POST['displayname'])   && isset($_SESSION['email']) )
     {
-        set_displayname($_POST['displayname'],$_POST['email']);
+        set_displayname($_POST['displayname'],$_SESSION['email']);
     }
-    if (isset($_POST['displayname']) && isset($_POST['email']))
+    if (isset($_POST['username']) && isset($_SESSION['email']))
     {
-        set_username($_POST['username'],$_POST['email']);
+        set_username($_POST['username'],$_SESSION['email']);
     }
-    if (isset($_POST['displayname']) && isset($_POST['RecieveEmail']))
+    if (isset($_SESSION['email']) && isset($_POST['email']))
     {
-        set_username($_POST['username'],$_POST['email']);
+        set_email($_POST['username'],$_POST['email']);
     }
 ?>

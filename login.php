@@ -13,7 +13,7 @@
      <a href = "http://localhost:8080/Camagru/mainview.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
     </div>
     <div id = "signup">
-        <form action= "login.php" method = "post">
+        <form action= "login.php" method = "post" id = "form">
         <img src = "user.png" width = "300" height = "300" id = "usr_img"/>
         <p id = "errmsg">
             <?php  

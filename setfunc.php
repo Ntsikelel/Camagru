@@ -3,12 +3,10 @@
 
 function set_pass($pass, $email)
 {
-    require_once  ("config/database.php");
+    global $DB_DSN,$DB_USER,$DB_PASSWORD;
     try
     {
-        $DB_DSN = "mysql:host=localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456";
+       
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stat = $pdo->query("SELECT * FROM users");
@@ -16,9 +14,8 @@ function set_pass($pass, $email)
         {
             if($name['email'] === $email)
            { 
-               $query = "UPDATE users SET passwd = "."'$pass'"." WHERE id = ".$name['id'];
-               echo $query;
-             $pdo->exec($query);
+            $st = $pdo->prepare("UPDATE users SET passwd =:passwd WHERE id = :id");
+            $st->execute(['passwd'=>$pass,'id'=>$name['id']]);
             }
         }
     }
@@ -29,13 +26,9 @@ function set_pass($pass, $email)
 }
 function set_username($username, $email)
 {
-    require_once  ("config/database.php");
+    global $DB_DSN,$DB_USER,$DB_PASSWORD;
     try
     {
-        $DB_DSN = "mysql:host=localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456"; 
-        echo $DB_DSN."Database1"; 
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
           $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stat = $pdo->query("SELECT * FROM users");
@@ -43,9 +36,8 @@ function set_username($username, $email)
         {
             if($name['email'] === $email)
            { 
-               $query = "UPDATE users SET username = "."'$username'"." WHERE id = ".$name['id'];
-               echo $query;
-             $pdo->exec($query);
+            $st = $pdo->prepare("UPDATE users SET username =:username WHERE id = :id");
+            $st->execute(['username'=>$username,'id'=>$name['id']]);
             }
         }
     }
@@ -56,20 +48,18 @@ function set_username($username, $email)
 }
 function set_email($emailb,$emaila)
 {
-    require_once  ("config/database.php");
+    global $DB_DSN,$DB_USER,$DB_PASSWORD;
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-       
         $stat = $pdo->query("SELECT * FROM users");
         while ($name = $stat->fetch())
         {
             if($name['email'] === $emailb)
            { 
-               $query = "UPDATE users SET email = "."'$emaila'"." WHERE id = ".$name['id'];
-               echo $query;
-             $pdo->exec($query);
+            $st = $pdo->prepare("UPDATE users SET email =:email WHERE id = :id");
+            $st->execute(['email'=>$emaila,'id'=>$name['id']]);
             }
         }
     }
@@ -80,12 +70,10 @@ function set_email($emailb,$emaila)
 }
 function set_is_act($num, $email)
 { 
-    //require_once  ("/goinfre/nmetseem/MAMP/apache2/htdocs/Camagru/config/setup.php");
+    global $DB_DSN,$DB_USER,$DB_PASSWORD;
     try
     {
-        $DB_DSN = "mysql:host=localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456"; 
+     
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        
@@ -94,9 +82,8 @@ function set_is_act($num, $email)
         {
             if($name['email'] === $email)
            { 
-               $query = "UPDATE users SET is_act = ".$num." WHERE id = ".$name['id'];
-               echo $query;
-             $pdo->exec($query);
+            $st = $pdo->prepare("UPDATE users SET is_act = :is_act WHERE id = :id");
+            $st->execute(['is_act'=>$num,'id'=>$name['id']]);
             }
         }
     }
@@ -107,20 +94,18 @@ function set_is_act($num, $email)
 }
 function set_is_pen($num, $email)
 {
-    require_once  ("config/database.php");
+    global $DB_DSN,$DB_USER,$DB_PASSWORD;
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='.'camagru', $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-       
         $stat = $pdo->query("SELECT * FROM users");
         while ($name = $stat->fetch())
         {
             if($name['email'] === $email)
            { 
-               $query = "UPDATE users SET is_pen = ".$num." WHERE id = ".$name['id'];
-               echo $query;
-             $pdo->exec($query);
+            $st = $pdo->prepare("UPDATE users SET is_pen = :is_pen WHERE id = :id");
+               $st->execute(['is_pen'=>$is_pen,'id'=>$name['id']]);
             }
         }
     }
@@ -131,31 +116,21 @@ function set_is_pen($num, $email)
 }
 function set_displayname($displayname, $email)
 { 
-    require_once  ("config/database.php");
+    global $DB_DSN,$DB_USER,$DB_PASSWORD;
     try
-    { // echo "here3";
-       
-        $DB_DSN = "mysql:host=localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456"; 
-       // echo $DB_DSN."Database1"; 
+    { 
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
-        //$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stat = $pdo->query("SELECT * FROM users");
-       
-       // echo $email;
-       // echo $displayname;
-    
         while ($name = $stat->fetch())
         {
-           // print_r($name);
+       
            
             if($name['email'] === $email)
            {   
                
-               $query = "UPDATE users SET displayname ="."'$displayname'"." WHERE id =".$name['id'];
-               echo $query; 
-               $pdo->exec($query); 
+            $st = $pdo->prepare("UPDATE users SET displayname =:displayname WHERE id =:id");
+               $st->execute(['displayname'=>$displayname,'id'=>$name['id']]);
             }
         }
   

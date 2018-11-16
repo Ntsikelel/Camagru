@@ -127,6 +127,10 @@ a {
     font-family: monospace;
     color: black;
 }
+#form
+{
+    
+}
 #footer
 {
  height: 100px;
@@ -137,4 +141,57 @@ a {
  left: 0;
  overflow: hidden; */
  background-color: rgba(9, 182, 144, 0.8);
+}
+@media only screen and (min-width:320px) and (max-width:600px)
+{
+    body
+    {
+    display: grid;
+    /* grid-template-rows: 4rem 1fr;     */
+    }
+    #cam_img
+    {
+    display: grid;
+    grid-template-columns: 1fr;
+  
+    }
+    #header
+    {
+    display: grid;
+    grid-template-columns: 50% 50%; 
+    }
+    #signup
+    { 
+    grid-template-columns: 1fr;
+    }
+}
+@media only screen and (min-width:601px) and (max-width:800px)
+{
+    #header
+    {
+    display: grid;
+    grid-template-columns: 70% 30%; 
+    }
+    #cam_img
+    {
+    display: grid;
+    grid-template-columns: 1fr;
+   
+    }
+    #signup
+    { 
+      grid-template-columns: 1fr ;
+    }
+}
+@media only screen and (min-width:801px) and (max-width:1000px)
+{
+    #header
+    {
+    display: grid;
+    grid-template-columns: 80% 20%; 
+    }
+    #signup
+    { 
+     grid-template-columns: 1fr ;
+    }
 }

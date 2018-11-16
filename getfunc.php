@@ -219,9 +219,7 @@
     }
         function get_pictures()  
         {
-            $DB_DSN = "mysql:host=localhost";
-            $DB_USER = "root";
-            $DB_PASSWORD = "123456";
+            global $DB_DSN,$DB_USER,$DB_PASSWORD;
             try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -242,9 +240,7 @@
     }
         function get_pic_uid()
         {
-            $DB_DSN = "mysql:host=localhost";
-            $DB_USER = "root";
-            $DB_PASSWORD = "123456";
+            global $DB_DSN,$DB_USER,$DB_PASSWORD;
             try
             {
                 $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -265,9 +261,7 @@
         }
         function get_pic_id()
         {
-            $DB_DSN = "mysql:host=localhost";
-            $DB_USER = "root";
-            $DB_PASSWORD = "123456";
+            global $DB_DSN,$DB_USER,$DB_PASSWORD;
             try
             {
                 $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
