@@ -1,13 +1,10 @@
 <?PHP
-include_once './config/database.php';
-
+require_once('config/database.php');
 function delete_img($u_id,$imgid)
-{
+{    global $DB_DSN,$DB_USER,$DB_PASSWORD;
     try
     {
-        $DB_DSN = "mysql:host=localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456";
+        
         $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
         $pdo->prepare("DELETE FROM pictures WHERE pictures.u_id = ? AND pictures.id = ?")->execute([$u_id , $imgid]);

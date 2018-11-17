@@ -4,9 +4,7 @@ require_once ("setfunc.php");
 
 $email = $_GET['email'];
 $tok = $_GET['tok'];
-$DB_DSN = "mysql:host=localhost";
-$DB_USER = "root";
-$DB_PASSWORD = "123456";
+global $DB_DSN,$DB_USER,$DB_PASSWORD;
 try
 {
     $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);

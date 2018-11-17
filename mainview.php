@@ -35,7 +35,17 @@
         
         <!-- <img src="backgr.jpg" id = "cam_img_id" height="400" style="padding:10px;"/> -->
         <div id = "sidebar" style= "overflow-x:scroll; height:410px; padding:0px;margin-top: 40px; ">
-
+            <p>_</p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <h1 style="font-family:Impact, Charcoal, sans-serif;color:white;" id= "name"> Welcome <?php require_once ("getfunc.php"); if (!isset($_SESSION))
+                {session_start();}  echo get_displayname($_SESSION['email'])."_"?></h1> 
         </div>
     </div>
     <div id = "images" style= "overflow-x:scroll">
@@ -87,14 +97,15 @@
 </html>
 <?php
 if (!isset($_SESSION))
-{session_start();}
+{session_start(); //$_SESSION['email'] = '';
+}
 require_once ("add.php");
 require_once ("getfunc.php");
 require_once ("delete.php");
-
-    if(!isset($_SESSION['email']))
+//var_dump($_SESSION);
+    if(isset($_SESSION['email']) || $_SESSION['email'] === '')
     {
-        header('Location: index.php');
+       // header('Location: index.php');
     }
     if(isset($_POST['like']))
     {

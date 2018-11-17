@@ -50,8 +50,7 @@
 </body>
 </html>
 <?PHP
-    if (!isset($_SESSION))
-    {session_start();}
+    
     if (isset($_POST['submit']))
     {
         require_once  ("config/database.php");
@@ -75,6 +74,8 @@
                     {
                         if($name['email'] === $username && $name['passwd'] === $passwd && $name['is_act'] == 1)
                         {
+                            if (!isset($_SESSION))
+                                 {session_start();}
                             $_SESSION['email'] = $name['email'];
                             header('Location: http://localhost:8080/Camagru/index.php');
                             exit();

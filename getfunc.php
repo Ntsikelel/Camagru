@@ -18,7 +18,7 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
     }
     function get_id($email)
@@ -39,7 +39,7 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
     }
     function get_uid($email)
@@ -60,7 +60,7 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
     }
     function get_pass($pass, $email)
@@ -81,7 +81,7 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
     }
     function get_username($username, $email)
@@ -102,7 +102,7 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
 
     }
@@ -124,7 +124,7 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
     }
     function get_email_by_id($id)
@@ -146,11 +146,12 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
     }
     function get_is_act($num, $email)
     { 
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
@@ -167,7 +168,7 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
     }
     function get_is_pen($email)
@@ -189,7 +190,7 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
     }
     function get_displayname($email)
@@ -211,7 +212,7 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
     }
         function get_pictures()  
@@ -232,7 +233,7 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
     }
         function get_pic_uid()
@@ -253,7 +254,7 @@
             
             catch (PDOException $e)
             {
-                echo $e.getMessege();
+                echo "Error : in PDO\n";
             }
         }
         function get_pic_id()
@@ -273,7 +274,7 @@
             }
             catch (PDOException $e)
             {
-                echo $e.getMessege();
+                echo "Error : in PDO\n";
             }
         }
     function get_pic_num()
@@ -293,7 +294,7 @@
         }
         catch (PDOException $e)
         {
-            echo $e.getMessege();
+            echo "Error : in PDO\n";
         }
     }
     function show_com($id)
@@ -315,7 +316,7 @@
   
     catch (PDOException $e)
     {
-      //  echo $e.getMessege();
+        echo "Error : in PDO\n";
     }
 
     }
@@ -337,7 +338,7 @@
   
     catch (PDOException $e)
     {
-       // echo $e.getMessege();
+       echo "Error : in PDO\n";
     }
 
     }

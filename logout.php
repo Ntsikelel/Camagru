@@ -1,7 +1,8 @@
 <?php
 session_start();
-//var_dump($_SESSION);
+
 session_destroy();
-//var_dump($_SESSION);
+unset($_SESSION['email']);
+
 header('Location: http://localhost:8080/Camagru/index.php');
 ?>
