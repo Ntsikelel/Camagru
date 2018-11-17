@@ -20,7 +20,7 @@
         </div> 
     </div> 
    
-    <canvas id= "canv" width="600" height = "600" style= "background : black"></canvas>
+    <canvas id= "canv" width="600" height = "600" style= "background : transparent;"></canvas>
     <table>
         <tr id="smp_img">
             <td id= "smp_img_block"><img src="smp1.png" width="100" height = "100" onclick="view_img_1(1)" id = "smp1"></td>
@@ -58,7 +58,8 @@
     </div>
        
 </div>
-</div >
+</div>
+
 </body>
 </html>
 <?php

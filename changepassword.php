@@ -16,7 +16,14 @@
 <div id = "signup">
         <form action= "changepassword.php" method = "post">
         <img src = "user.png" width = "300" height = "300">
-            <p id = "errmsg"></p>
+            <p id = "errmsg">
+            <?php  
+                foreach($_GET as $key => $val)
+                {
+                    echo "Error :".$val; 
+                }
+            ?>
+            </p>
             <input  type= "password" name="passwd" placeholder="*******" required/>
             <br/>
             <input  type= "password" name="passwd_ver" placeholder="******" required/>
@@ -36,11 +43,8 @@
 </html>
 <?php
     require_once ("setfunc.php");
-    
-
-$DB_DSN = "mysql:host=localhost";
-$DB_USER = "root";
-$DB_PASSWORD = "123456";
+    require_once  ("config/database.php");
+    global $DB_DSN,$DB_USER,$DB_PASSWORD;
 if(isset($_POST['submit']))
 {
     if(isset($_POST['passwd']) && isset($_POST['passwd_ver']))
@@ -51,6 +55,11 @@ if(isset($_POST['submit']))
      
         if($passwd == $passwd_ver)
         { 
+            if (($e = ver_pass($_POST['passwd'])) !== '1')
+             {
+               header('Location: http://localhost:8080/Camagru/changepassword.php?error='.$e); 
+             exit();
+             }
     try
     {
     $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);

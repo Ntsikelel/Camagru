@@ -27,6 +27,8 @@
             <br/>
             <input  type= "email" name="email" placeholder="example@domain.com" required/>
             <br/>
+            <input  type= "password" name="passwd" placeholder="P******" required/>
+            <br/>
             <input  type= "text" name="displayname" placeholder="Display Name" required/>
             <br/>Recieve Email <input type= "checkbox" name = "RecieveEmail" checked>
             <input  type= "submit" name="submit" value = "Edit Profile"/>
@@ -49,9 +51,12 @@
 </html>
 <?php
     require_once  ("setfunc.php");
+    require_once ("verfunc.php");
     if (!isset($_SESSION))
  {session_start();}
- //echo $_POST['displayname'].$_SESSION['email'];
+
+ if (isset($_POST['submit']))
+ {
     if (isset($_POST['displayname']) && isset($_SESSION['email']) )
     {
         set_displayname($_POST['displayname'],$_SESSION['email']);
@@ -60,6 +65,16 @@
     if (isset($_POST['username']) && isset($_SESSION['email']))
     {
         set_username($_POST['username'],$_SESSION['email']);
+        header('Location:  http://localhost:8080/Camagru/mainview.php');
+    }
+    if (isset($_POST['passwd']) && isset($_SESSION['email']))
+    {
+        if (($e = ver_pass($_POST['passwd'])) !== '1')
+        {
+            header('Location: http://localhost:8080/Camagru/editprofile.php?error='.$e); 
+             exit();
+        }
+        set_pass(hash('whirlpool',$_POST['passwd'],false),$_SESSION['email']);
         header('Location:  http://localhost:8080/Camagru/mainview.php');
     }
     if (isset($_SESSION['email']) && isset($_POST['email']))
@@ -78,4 +93,5 @@
         set_is_pen(1,$_POST['email']);
         header('Location:  http://localhost:8080/Camagru/mainview.php');
     }
+}
 ?>

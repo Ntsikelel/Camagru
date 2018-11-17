@@ -23,8 +23,8 @@ body
 #signup
 {
     width: 400px;
-    height: 550px;
-    /* min-height: calc(100vh - 70px); */
+    height: 600px;
+
     padding: 0;
     margin: 0;
     border: none;
@@ -33,20 +33,17 @@ body
     transform: translate(-50%,-40%);
     position: absolute;
     text-align: center;
-    /* background-color:  rgba(9, 182, 144, 1); */
+
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 1fr;
     background: white;
-    /* background-image: url('../logback.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;  */
-    /* margin-bottom: -50px; */
+  
 }
+
 #div_pic
 {
-    /* margin-left: 40px; */
+  
     background-image: url('logback.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -99,7 +96,7 @@ body
 {
     width: 70%;
     margin: 20px;
-    /* background: rgba(214, 35, 110, 0.459); */
+  
     border-bottom: 1px solid black;
     border-left: 1px solid black;
     border-right: 1px solid black;
@@ -114,7 +111,7 @@ body
     border: 1px solid gray;
     color: wheat;
 }
-#div_pic:hover
+#signup  #div_pic:hover
 {
     background-image: url('logback2.png');
     background-repeat: no-repeat;

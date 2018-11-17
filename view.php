@@ -38,12 +38,20 @@
     </tr>
 </table>
     <div>
-    <canvas id = "canv" width="500" height = "500" style= "background: transparent left:0; top:70px; position:absolute; width:500px;"></canvas>
+    <canvas id = "canv" width="500" height = "500" style= "background: transparent; left:0; top:70px; position:absolute; width:500px height=500px;"></canvas>
     <form  action="view.php" method="post" id="image_data" onsubmit= "alert('Submit')">
     <!-- <input type = "text" id = "image" value="her"/> -->
     <input type = "submit" name="submit" id = "sub"/>
     </form>
     </div>
+    <!-- <div class="footer" style="    background:  rgba(9, 182, 144, 0.8);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;">
+    <p style="float:right ;display:inline; color:white"> &copy nmetseem </p>
+</div> -->
 </div>
 </body>
 </html>

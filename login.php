@@ -73,7 +73,6 @@
                     $stat = $pdo->query("SELECT * FROM users");
                     while ($name = $stat->fetch())
                     {
-        
                         if($name['email'] === $username && $name['passwd'] === $passwd && $name['is_act'] == 1)
                         {
                             $_SESSION['email'] = $name['email'];
@@ -84,6 +83,11 @@
                         {
                         
                             header('Location: http://localhost:8080/Camagru/login.php?error=ActivateAccount');
+                            exit();
+                        }  
+                        if($name['email'] === $username && $name['passwd'] !== $passwd )
+                        {
+                            header('Location: http://localhost:8080/Camagru/login.php?error=IncorrectPassword');
                             exit();
                         }  
                     }

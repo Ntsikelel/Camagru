@@ -52,16 +52,16 @@ body
 }
 #smp_img
 {
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     padding: 20px;
 }
 #smp_img_block
 {
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     padding: 20px;
 }
 #cam
 {
-    width: 800px;
-    height: 800px;
+    /* width: 800px;
+    height: 800px; */
 }

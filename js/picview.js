@@ -11,18 +11,33 @@
 
     var cont = can.getContext('2d');
     navigator.mediaDevices.getUserMedia({video:true}).then(function(stream){cam.src = window.URL.createObjectURL(stream); cam.play();}); 
-    
+    if(norep === false){
+        var btn = document.createElement("BUTTON");
+        btn.id = "save";
+        btn.innerHTML =' <img src= "upload.png" width ="50" height = "50" style= "border-radius: 30%;"/>';
+        btn.width = 100;
+        btn.height = 100;
+     
+        btn.style.background = "transparent";
+        btn.style.border = "none";
+     
+        var text = document.createTextNode("");
+        btn.appendChild(text);
+        document.getElementById('cam').appendChild(btn);
+        norep = true;
+    }
     document.getElementById('cap').addEventListener("click",function()
     {
+        // cam.parentNode.removeChild(cam);
         cont.drawImage(cam,0,0,500,500);
         var data = can.toDataURL();
-       // alert(data);
+        // cam.pause();
 
     });
 }
 function view_img(num)
 {
-    //alert('smp'+num);
+  
     
     can = document.getElementById('canv');
     var cont = can.getContext('2d');
@@ -34,10 +49,10 @@ function view_img(num)
     btn.innerHTML =' <img src= "upload.png" width ="50" height = "50" style= "border-radius: 30%;"/>';
     btn.width = 100;
     btn.height = 100;
-    // btn.setAttribute("type", "Submit");
+ 
     btn.style.background = "transparent";
     btn.style.border = "none";
-    //alert(btn);
+ 
     var text = document.createTextNode("");
     btn.appendChild(text);
     document.getElementById('cam').appendChild(btn);
@@ -92,16 +107,15 @@ function view_img_1(num)
         ajaxify(data,'POST','http://localhost:8080/Camagru/upload.php?');
     });
 }
+
 function ajaxify(data,method,url)
 {
     var ajax = new XMLHttpRequest();
-
     ajax.onreadystatechange = function()
     {
             if(ajax.readyState == 4 && ajax.status >= 200 && ajax.status <= 300)
             {
                 console.log(ajax.responseText);
-                //console.log(data);
             }
             else if(ajax.readyState== 4)
             {
@@ -112,7 +126,6 @@ function ajaxify(data,method,url)
     {
         ajax.open(method,url,true);
         ajax.send();
-        alert(data);
     }
 }
 function Take_image()
@@ -123,5 +136,4 @@ function Take_image()
     var image = new Image(600,600);
      image.src= Filename.value.replace('C:\\fakepath\\',"");
     co.drawImage(image,0,0,600,600);
-    alert(Filename.value+ "    image src  :" + image.src) ;
 }

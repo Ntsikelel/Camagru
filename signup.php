@@ -14,7 +14,7 @@
      <a href = "http://localhost:8080/Camagru/mainview.php">  <img src = "camagrulogo.png" width = "100" height = "100" style id = "logo"></a>
     </div>
     <div id = "signup">
-        <form action= "signup.php" method = "post">
+        <form action= "signup.php" method = "post" style= "background:white;">
         <img src = "user.png" width = "300" height = "300">
             <p id = "errmsg">
             <?php  
@@ -70,10 +70,15 @@
     return (hash("whirlpool",$email,false));
 }
 
-if (isset($_POST['submit']))
-{
- 
-    if (isset($_POST['passwd']) || isset($_POST['email']) || isset($_POST['username']))
+if (isset($_POST['submit']) && isset($_POST['g-recaptcha-response']))
+{   
+    var_dump($_POST);
+    $sec = '6LcNCHsUAAAAAMVANx28GTppwiEPSa4oVgvu1ovm';
+    $res = $_POST['g-recaptcha-response'];
+    $r_ip = $_SERVER['REMOTE_ADDR'];
+    $file = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$sec&response=$res&remoteip=$r_ip");
+    $resp = json_decode($file,TRUE);
+    if (isset($_POST['passwd']) && isset($_POST['email']) && isset($_POST['username']) && $resp['success'] == TRUE)
     {
     $username = $_POST['username'];
     $val = 'whirlpool'; 
@@ -111,7 +116,7 @@ if (isset($_POST['submit']))
                 exit();
             }
         }
-        $pdo->prepare($query)->execute([null,$username,$passwd,$email,0,0,'user']);
+        $pdo->prepare($query)->execute([null,$username,$passwd,$email,0,1,'user']);
         $query_t = "INSERT INTO tok(id, token) VALUES (?,?)";
         send_act($email,$tok = gen_tok($email)); 
         $pdo->prepare($query_t)->execute([get_id($email),$tok]);

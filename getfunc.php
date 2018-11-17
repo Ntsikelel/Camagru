@@ -1,8 +1,5 @@
     <?php
         require_once  ('config/database.php');
-        // $DB_DSN = "mysql:host=localhost";
-        // $DB_USER = "root";
-        // $DB_PASSWORD = "123456";
     function is_exist($email,$user)
     {
         global $DB_DSN,$DB_USER,$DB_PASSWORD;
@@ -185,7 +182,7 @@
             {
              
                 if($name['email'] === $email)
-                 {    echo $name['id'];
+                 { 
                 return ($name['is_pen']);
                 }
             }
@@ -245,7 +242,7 @@
             {
                 $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stat = $pdo->query("SELECT * FROM pictures");
+                $stat = $pdo->query("SELECT * FROM pictures ORDER BY pictures.id DESC");
                 $arr[] = array();
                 while ($name = $stat->fetch())
                 {
@@ -266,7 +263,7 @@
             {
                 $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stat = $pdo->query("SELECT * FROM pictures");
+                $stat = $pdo->query("SELECT * FROM pictures ORDER BY pictures.id DESC");
                 $arr[] = array();
                 while ($name = $stat->fetch())
                 {
@@ -274,7 +271,6 @@
                 }
                 return ($arr);
             }
-            
             catch (PDOException $e)
             {
                 echo $e.getMessege();
@@ -288,7 +284,7 @@
             $count = 0;
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stat = $pdo->query("SELECT * FROM pictures");
+            $stat = $pdo->query("SELECT * FROM pictures ORDER BY pictures.id DESC");
             while ($name = $stat->fetch())
             {
                     $count++;
@@ -325,9 +321,7 @@
     }
     function get_pic_like($id)
     {
-        $DB_DSN = "mysql:host=localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456";
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
