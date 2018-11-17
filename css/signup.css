@@ -15,11 +15,11 @@ body
     color:#ccc;
     background: #eee;
 }
-#usr_img
+/* #usr_img
 {
-    /* position: absolute; */
-    /* top: -50px; */
-}
+    position: absolute;
+    top: -50px;
+} */
 #signup
 {
     width: 400px;
@@ -124,10 +124,10 @@ a {
     font-family: monospace;
     color: black;
 }
-#form
+/* #form
 {
     
-}
+} */
 #footer
 {
  height: 100px;
