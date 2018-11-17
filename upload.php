@@ -52,6 +52,7 @@
             ?>
             <input type= "file" name= "file" id = "file">
             <input type= "hidden" name= "img_save" id = "img_save">
+            <input type= "submit" name= "sub" id = "sub" value="_">
         </form>
     </div>
     <script src= "js/picview.js"></script>

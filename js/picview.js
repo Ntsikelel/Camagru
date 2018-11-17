@@ -31,8 +31,23 @@
         // cam.parentNode.removeChild(cam);
         cont.drawImage(cam,0,0,500,500);
         var data = can.toDataURL();
-        // cam.pause();
+        //cam.pause();
 
+
+    });
+    document.getElementById('save').addEventListener("click",function()
+    {
+        var data = can.toDataURL();
+        var info = document.createElement("INPUT");
+        info.id = "image";
+        info.setAttribute("name","image");
+        info.setAttribute("type","text");
+        info.setAttribute("id","image");
+        info.setAttribute("value",data);
+        info.value = data;
+        document.getElementById('image_data').appendChild(info);
+        document.getElementById('sub').click();
+       
     });
 }
 function view_img(num)
@@ -68,13 +83,8 @@ function view_img(num)
         info.setAttribute("id","image");
         info.setAttribute("value",data);
         info.value = data;
-      
-       // alert(data);
         document.getElementById('image_data').appendChild(info);
-      //   alert("This is name : "+document.getElementById('image').getAttribute("name"));
-      //  alert("Wait"); 
          document.getElementById('sub').click();
-       
     });
 }
 function view_img_1(num)

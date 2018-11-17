@@ -56,8 +56,8 @@
             {
                 if(window.location == 'http://localhost:8080/Camagru/mainview.php')
                 {
-               //     window.location = window.location + '#1';
-             //       window.location.reload();
+                  window.location = window.location + '#1';
+                  window.location.reload();
                 }
             }
                 function show(theid)
