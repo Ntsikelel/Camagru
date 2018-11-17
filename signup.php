@@ -62,9 +62,9 @@
     require_once ("setfunc.php");
     require_once ("getfunc.php");
     require_once ("verfunc.php");
-     //  echo "here";
+ 
      global $DB_DSN,$DB_USER,$DB_PASSWORD;
-    //echo $DB_DSN.$DB_PASSWORD.$DB_USER;
+
  function gen_tok($email)
 {
     return (hash("whirlpool",$email,false));
@@ -72,10 +72,9 @@
 
 if (isset($_POST['submit']))
 {
-   // print_r($_POST);
+ 
     if (isset($_POST['passwd']) || isset($_POST['email']) || isset($_POST['username']))
     {
-        //echo "here1";
     $username = $_POST['username'];
     $val = 'whirlpool'; 
     if (($e = ver_pass($_POST['passwd'])) !== '1')
@@ -97,7 +96,6 @@ if (isset($_POST['submit']))
     {
         header('Location: http://localhost:8080/Camagru/signup.php?error=username');
     }
-   
     try
     {
         $pdo = new PDO($DB_DSN.';dbname='."camagru;", $DB_USER, $DB_PASSWORD);
@@ -108,8 +106,7 @@ if (isset($_POST['submit']))
         while ($name = $stat->fetch())
         {
             if($name['email'] === $email)
-           { 
-                 set_displayname("Got it",$email);
+             { 
                 header('Location: http://localhost:8080/Camagru/signup.php?error=UserExists');
                 exit();
             }
@@ -122,7 +119,6 @@ if (isset($_POST['submit']))
     }
     catch (PDOException $e)
     {
-       // echo $e.getMessege();
         header('Location: http://localhost:8080/Camagru/signup.php?error=ERROR'); 
     }
 }

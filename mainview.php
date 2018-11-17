@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
+<!-- <meta  http-equiv="Refresh" content= "0; url = http://localhost:8080/Camagru/mainview.php"> -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Page Title</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,8 +15,8 @@
     <!-- <a href="http://localhost:8080/Camagru/mainview.php"><img src="camera1.jpg"  width = "100" height = "100" id="camera"/></a>  -->
 <div id = "header">
         <a href = "http://localhost:8080/Camagru/mainview.php">  <img src = "camagrulogo.png" width = "100" height = "100" id = "logo"></a>
-        <p style="font-family:monospace;"> Hello <?php require_once ("getfunc.php"); if (!isset($_SESSION))
-                {session_start();}  echo get_displayname($_SESSION['email'])."_"?></p>  
+        <!-- <p style="font-family:monospace;"> Hello <?php require_once ("getfunc.php"); if (!isset($_SESSION))
+               // {session_start();}  echo get_displayname($_SESSION['email'])."_"?></p>   -->
         <div id="nav">   
             <a href="editprofile.php" id = "btn">Edit Profile</a>   
       
@@ -41,11 +42,14 @@
     <?php require_once ("getfunc.php"); html_insert()?>
             </div>
             <script>
-            //  function like()
-            //  {
-            //     alert('here');
-            //     // document.getElementById('like').submit();
-            //  }
+            window.onload = function ()
+            {
+                if(window.location == 'http://localhost:8080/Camagru/mainview.php')
+                {
+               //     window.location = window.location + '#1';
+             //       window.location.reload();
+                }
+            }
                 function show(theid)
                 {    
                 var show = document.getElementById('com_show'+theid);
@@ -87,24 +91,23 @@ if (!isset($_SESSION))
 require_once ("add.php");
 require_once ("getfunc.php");
 require_once ("delete.php");
-//echo "\n\n\n\n\n hello";
-//  if(isset($_POST['submit']))
-//  {
-// header('Location: http://localhost:8080/Camagru/mainview.php?submit');
-//header('Content-Type: text/html');
-//if(isset($_SESSION['email']))
-//{//
-   // header('Location: index.php');
-//}
+
+    if(!isset($_SESSION['email']))
+    {
+        header('Location: index.php');
+    }
     if(isset($_POST['like']))
     {
         $email = $_SESSION['email'];
-        add_like($id = get_id($email),$uid = $_POST['imgid']);
+        $uid = $_POST['imgid'];
+        $id = $_POST['imguid'];
+        add_like(get_email_by_id($id),$uid);
         // header('Location:  http://localhost:8080/Camagru/mainview.php?like&id='.$id."&uid=".$uid);
     }
     if(isset($_POST['comment']))
     {
-        add_comment($_POST['com'],$_SESSION['email'],$_POST['imgid']);
+        $id = $_POST['imguid'];
+        add_comment($_POST['com'],$_SESSION['email'],$_POST['imgid'],get_email_by_id($id));
         //  header('Location:  http://localhost:8080/Camagru/mainview.php?comment');
     }
     if(isset($_POST['deletePic']))
@@ -113,5 +116,4 @@ require_once ("delete.php");
         delete_img(get_id($email),$_POST['imgid']);
         //   header('Location:  http://localhost:8080/Camagru/mainview.php?delete');
     }
-
 ?>

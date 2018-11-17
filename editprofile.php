@@ -23,11 +23,11 @@
                 }
             ?>
             </p>
-            <input  type= "text" name="username" placeholder="Name" />
+            <input  type= "text" name="username" placeholder="Name" required/>
             <br/>
-            <input  type= "email" name="email" placeholder="example@domain.com" require/>
+            <input  type= "email" name="email" placeholder="example@domain.com" required/>
             <br/>
-            <input  type= "text" name="displayname" placeholder="Display Name" />
+            <input  type= "text" name="displayname" placeholder="Display Name" required/>
             <br/>Recieve Email <input type= "checkbox" name = "RecieveEmail" checked>
             <input  type= "submit" name="submit" value = "Edit Profile"/>
         </form>
@@ -51,16 +51,31 @@
     require_once  ("setfunc.php");
     if (!isset($_SESSION))
  {session_start();}
-    if (isset($_POST['displayname'])   && isset($_SESSION['email']) )
+ //echo $_POST['displayname'].$_SESSION['email'];
+    if (isset($_POST['displayname']) && isset($_SESSION['email']) )
     {
         set_displayname($_POST['displayname'],$_SESSION['email']);
+        header('Location:  http://localhost:8080/Camagru/mainview.php');
     }
     if (isset($_POST['username']) && isset($_SESSION['email']))
     {
         set_username($_POST['username'],$_SESSION['email']);
+        header('Location:  http://localhost:8080/Camagru/mainview.php');
     }
     if (isset($_SESSION['email']) && isset($_POST['email']))
     {
-        set_email($_POST['username'],$_POST['email']);
+        set_email($_SESSION['email'],$new_mail = $_POST['email']);
+        $_SESSION['email'] = $new_mail;
+        header('Location:  http://localhost:8080/Camagru/mainview.php');
+    }
+    if (isset($_SESSION['email']) && isset($_POST['email']) && !isset($_POST['RecieveEmail']))
+    {
+        set_is_pen(0,$_POST['email']);
+        header('Location:  http://localhost:8080/Camagru/mainview.php');
+    }
+    if (isset($_SESSION['email']) && isset($_POST['email']) && isset($_POST['RecieveEmail']))
+    {
+        set_is_pen(1,$_POST['email']);
+        header('Location:  http://localhost:8080/Camagru/mainview.php');
     }
 ?>

@@ -50,55 +50,52 @@
 </body>
 </html>
 <?PHP
- if (!isset($_SESSION))
- {session_start();}
-
-if (isset($_POST['submit']))
-{
-    require_once  ("config/database.php");
-    
-    global $DB_DSN,$DB_USER,$DB_PASSWORD;
-
-if (isset($_POST['submit']))
-{
-    if (isset($_POST['passwd']) || isset($_POST['username']))
+    if (!isset($_SESSION))
+    {session_start();}
+    if (isset($_POST['submit']))
     {
-    $username = $_POST['username'];
-    $val = 'whirlpool';
-    $passwd = hash($val, $_POST['passwd'],false);
-    echo $username.$passwd;
-    try
-    {
-        $pdo = new PDO($DB_DSN.';dbname='."camagru;", $DB_USER, $DB_PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stat = $pdo->query("SELECT * FROM users");
-        while ($name = $stat->fetch())
+        require_once  ("config/database.php");
+        
+        global $DB_DSN,$DB_USER,$DB_PASSWORD;
+
+        if (isset($_POST['submit']))
         {
-           print_r($name);
-         
-            if($name['email'] === $username && $name['passwd'] === $passwd && $name['is_act'] == 1)
+            if (isset($_POST['passwd']) && isset($_POST['username']))
             {
-                 $_SESSION['email'] = $name['email'];
-                 header('Location: http://localhost:8080/Camagru/index.php');
-                 exit();
-            }  
-            if($name['email'] === $username && $name['passwd'] === $passwd && $name['is_act'] == 0)
-            {
-               
-                 header('Location: http://localhost:8080/Camagru/login.php?error=ActivateAccount');
-                 exit();
-            }  
+                $username = $_POST['username'];
+                $val = 'whirlpool';
+                $passwd = hash($val, $_POST['passwd'],false);
+                
+                try
+                {
+                    $pdo = new PDO($DB_DSN.';dbname='."camagru;", $DB_USER, $DB_PASSWORD);
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $stat = $pdo->query("SELECT * FROM users");
+                    while ($name = $stat->fetch())
+                    {
+        
+                        if($name['email'] === $username && $name['passwd'] === $passwd && $name['is_act'] == 1)
+                        {
+                            $_SESSION['email'] = $name['email'];
+                            header('Location: http://localhost:8080/Camagru/index.php');
+                            exit();
+                        }  
+                        if($name['email'] === $username && $name['passwd'] === $passwd && $name['is_act'] == 0)
+                        {
+                        
+                            header('Location: http://localhost:8080/Camagru/login.php?error=ActivateAccount');
+                            exit();
+                        }  
+                    }
+                    header('Location: http://localhost:8080/Camagru/login.php?error=UserNotFound'); 
+                }
+                catch (PDOException $e)
+                {
+                    header('Location: http://localhost:8080/Camagru/login.php?error=ERROR'); 
+                }
+            }
+        else
+            header('Location: http://localhost:8080/Camagru/login.php?error=emptyfiled');
         }
-        header('Location: http://localhost:8080/Camagru/login.php?error=UserNotFound'); 
-    }
-    catch (PDOException $e)
-    {
-       // echo $e.getMessege();
-        header('Location: http://localhost:8080/Camagru/login.php?error=ERROR'); 
-    }
-}
-else
-    header('Location: http://localhost:8080/Camagru/login.php?error=emptyfiled');
-}
-} 
+    } 
 ?>

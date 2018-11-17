@@ -21,7 +21,7 @@
            passwd VARCHAR(128) NOT NULL,
            email VARCHAR(50) NOT NULL,
            is_act INT DEFAULT '0',
-           is_pen INT DEFAULT '0',
+           is_pen INT DEFAULT '1',
            displayname VARCHAR(30) DEFAULT 'User'
          ) ";
         $pdo->exec($query);

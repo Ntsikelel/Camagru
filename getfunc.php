@@ -138,13 +138,12 @@
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stat = $pdo->query("SELECT * FROM users");
-            //sleep(100000);
+
             while ($name = $stat->fetch())
-            {
-                if($name['id'] === $id)
             { 
-                // sleep(100000);
-                return ($name['email']);
+                if($name['id'] === $id)
+                 {    
+                     return ($name['email']);
                 }
             }
         }
@@ -174,7 +173,7 @@
             echo $e.getMessege();
         }
     }
-    function get_is_pen($num, $email)
+    function get_is_pen($email)
     {
         global $DB_DSN,$DB_USER,$DB_PASSWORD;
         try
@@ -184,8 +183,9 @@
             $stat = $pdo->query("SELECT * FROM users");
             while ($name = $stat->fetch())
             {
+             
                 if($name['email'] === $email)
-            { 
+                 {    echo $name['id'];
                 return ($name['is_pen']);
                 }
             }
@@ -224,7 +224,7 @@
         {
             $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stat = $pdo->query("SELECT * FROM pictures");
+            $stat = $pdo->query("SELECT * FROM pictures ORDER BY pictures.id DESC");
             $arr[] = array();
             while ($name = $stat->fetch())
             {
@@ -375,10 +375,11 @@
                 <p style = "float:left; font-family: monospace;background:red; width:17px; color: white; border-radius:50%; margin-left :20px; text-align:center;">'.$likes.'</p>
                 <input type ="submit" name = "like" id ="like" value ="like" style = "margin-top: 10px; height:50%; width= "100%;">
                 <input type = "hidden" name = "imgid" value='.$arr_id[$counter].'>
+                <input type = "hidden" name = "imguid" value='.$arr_uid[$counter].'>
                 <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
                 </form>
                 <form action ="mainview.php" method="post">
-                <input type = "text" name = "com" placeholder="Comment" required><input type = "hidden" name = "imgid" value='.$arr_id[$counter].'>
+                <input type = "text" name = "com" placeholder="Comment" required><input type = "hidden" name = "imgid" value='.$arr_id[$counter].'> <input type = "hidden" name = "imguid" value='.$arr_uid[$counter].'>
                 <input type ="submit" name = "comment"  value = "comment"id = "comment" style = "margin-top: 10px;width= "100%;"> <img src = "" alt="" width="50" height="50" onclick=""/>
                 <input type = "hidden" name = "imgpath" value='.$arr[$counter].'>
                 </form>

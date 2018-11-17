@@ -105,7 +105,7 @@ function set_is_pen($num, $email)
             if($name['email'] === $email)
            { 
             $st = $pdo->prepare("UPDATE users SET is_pen = :is_pen WHERE id = :id");
-               $st->execute(['is_pen'=>$is_pen,'id'=>$name['id']]);
+               $st->execute(['is_pen'=>$num,'id'=>$name['id']]);
             }
         }
     }

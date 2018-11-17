@@ -49,33 +49,21 @@
 </html>
 
 <?php
-if (!isset($_SESSION))
-{session_start();}
-   require_once("add.php");
+    if (!isset($_SESSION))
+    {session_start();}
+    require_once("add.php");
    if(isset($_POST['submit']))
    {
-       //print_r($_POST);
-   
     if(isset($_POST['image']))
     {
-    
-       
-      //  header('Location: http://localhost:8080/Camagru/signup.php');
-      //  print_r($_POST);
-     // header('Content-Type: image/png');
-         $rand = rand();
+        if (!file_exists('img_s/'))
+        {
+            mkdir('img_s/',0755);
+        }
+        $rand = rand();
         add_img("img_s/image".$_SESSION['email'].$rand.".png",$_SESSION['email']);
-        // if (mkdir("img_s",0777) === false)
-        // {
-        // file_put_contents("img_s/",base64_decode(strchr($_POST['image'],",")));
-        // }
-        // else
-        // {
-           // echo getcwd()."/img_s/";
-         file_put_contents("img_s/image".$_SESSION['email'].$rand.".png",base64_decode(strchr($_POST['image'],",")));
+        file_put_contents("img_s/image".$_SESSION['email'].$rand.".png",base64_decode(strchr($_POST['image'],",")));
         header('Location: http://localhost:8080/Camagru/mainview.php?Saved');
-    //  }
     }
 }
-    
 ?>

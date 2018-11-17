@@ -16,15 +16,7 @@
 <div id = "signup">
         <form action= "changepassword.php" method = "post">
         <img src = "user.png" width = "300" height = "300">
-            <p id = "errmsg">
-            <?php  
-                // foreach($_GET as $key => $val)
-                // {
-                //     echo "Error :".$val; 
-                // }
-              
-            ?>
-            </p>
+            <p id = "errmsg"></p>
             <input  type= "password" name="passwd" placeholder="*******" required/>
             <br/>
             <input  type= "password" name="passwd_ver" placeholder="******" required/>
@@ -45,10 +37,7 @@
 <?php
     require_once ("setfunc.php");
     
-//   $email = $_GET['email'];
-//                 $tok = $_GET['tok'];
- 
-  //echo $email.$tok;
+
 $DB_DSN = "mysql:host=localhost";
 $DB_USER = "root";
 $DB_PASSWORD = "123456";
@@ -67,19 +56,15 @@ if(isset($_POST['submit']))
     $pdo = new PDO($DB_DSN.';dbname='.'camagru;', $DB_USER, $DB_PASSWORD);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stat = $pdo->query("SELECT * FROM tok"); 
-       //    header('Location: http://localhost:8080/Camagru/login.php?'.$tok);
-      //  exit(); 
+  
     while ($name = $stat->fetch())
     { 
-      //  echo $tok;
-        //exit();
+     
         if($name['email'] === $_GET['email'] && $name['is_act'] == 1)
        { 
-           // $tok_t = $name['token'];
-           // $query = "DELETE FROM tok WHERE token ="."'$tok_t'";
-          //  set_is_act(1,$email);
+         
             set_pass($passwd, $email);
-            $pdo->exec($query);
+    
             header('Location: http://localhost:8080/Camagru/login.php');
             exit();
         }
@@ -87,7 +72,6 @@ if(isset($_POST['submit']))
 }
 catch (PDOException $e)
 {
-    //echo $e.getMessege();
     header('Location: http://localhost:8080/Camagru/signup.php?error= "Signup"');
 }}
 else
