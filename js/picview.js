@@ -10,7 +10,7 @@
     btn.parentNode.removeChild(btn);
 
     var cont = can.getContext('2d');
-    navigator.mediaDevices.getUserMedia({video:true}).then(function(stream){cam.src = window.URL.createObjectURL(stream); cam.play();}); 
+    navigator.mediaDevices.getUserMedia({video:true}).then(function(stream){cam.srcObject = stream; cam.play();}); 
     if(norep === false){
         var btn = document.createElement("BUTTON");
         btn.id = "save";
