@@ -44,6 +44,7 @@
 <?php
     require_once ("setfunc.php");
     require_once  ("config/database.php");
+    require_once ("verfunc.php");
     global $DB_DSN,$DB_USER,$DB_PASSWORD;
 if(isset($_POST['submit']))
 {

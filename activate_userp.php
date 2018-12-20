@@ -19,7 +19,7 @@ try
         set_is_act(1,$email);
       //  set_pass($passwd, $email);
         $pdo->exec($query);
-            header('Location: http://localhost:8080/Camagru/login.php?email='.$email);
+            header('Location: http://localhost:8080/Camagru/changepassword.php?email='.$email);
         }
     }
 }
